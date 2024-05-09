@@ -26,4 +26,7 @@ require __DIR__.'/auth.php';
 
  });
  //=======End Admin Group Middleware=======
+// admin login route
+ Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
+ // admin login route
 
