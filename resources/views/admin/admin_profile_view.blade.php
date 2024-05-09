@@ -50,6 +50,7 @@
                 <div class="card">
                     <form action="{{ route('admin.profile.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="oldimg" value="{{ $profileData->photo }}">
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-sm-3">

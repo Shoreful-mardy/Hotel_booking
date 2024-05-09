@@ -39,12 +39,20 @@ class AdminController extends Controller
         $id = Auth::user()->id;
         $data = User::find($id);
 
+        
+
+
         $data->name = $request->name;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
 
         if($request->file('photo')){
+
+            $oldImage = public_path('upload/admin_images/' . $request->oldimg);
+            unlink($oldImage);
+            
+
             $file = $request->file('photo');
             $filename = date('YmdHi').$file->getClientOriginalName();
             $file->move(public_path('upload/admin_images'),$filename);
@@ -53,7 +61,12 @@ class AdminController extends Controller
 
         $data->save();
 
-        return redirect()->back();
+        $notificaton = array(
+            'message' => 'Admin Profile Update Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notificaton);
 
     }//End Method
 
