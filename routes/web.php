@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\TeamController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -20,6 +21,13 @@ Route::middleware('auth')->group(function () {
      Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
      Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
      Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+
+     /// TEAM ALL ROUTE START FROM HERE
+     Route::controller(TeamController::class)->group(function(){
+        Route::get('/all/team','AllTeam')->name('all.team');
+     });
+     /// TEAM ALL ROUTE END  HERE
 
 
 });
