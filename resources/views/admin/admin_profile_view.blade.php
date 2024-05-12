@@ -136,9 +136,6 @@
         });
     });
 </script>
-
-
-
 <!-- Script For Image Show in Input Field End -->
 
 @endsection

@@ -51,7 +51,7 @@
 										<h5 class="">Easy Admin</h5>
 										<p class="mb-0">Please log in to your account</p>
 									</div>
-									<div class="form-body">
+									<div class="form-body"> 
 		<form class="row g-3" method="POST" action="{{ route('login') }}">
         @csrf
 			<div class="col-12">
