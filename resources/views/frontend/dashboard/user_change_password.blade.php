@@ -45,7 +45,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="form-group">
                 <label>Old Password <span class="required">*</span></label>
-                <input type="text" name="old_password"  class="form-control @error('old_password') is-invalid @enderror" id="old_password">
+                <input type="password" name="old_password"  class="form-control @error('old_password') is-invalid @enderror" id="old_password">
                 @error('old_password')
                     <span class="text-danger"> {{ $message }} </span>
                 @enderror
@@ -53,7 +53,7 @@
 
             <div class="form-group">
                 <label>New Password <span class="required">*</span></label>
-                <input type="text" name="new_password"  class="form-control @error('new_password') is-invalid @enderror" id="new_password">
+                <input type="password" name="new_password"  class="form-control @error('new_password') is-invalid @enderror" id="new_password">
                 @error('new_password')
                     <span class="text-danger"> {{ $message }} </span>
                 @enderror
@@ -61,7 +61,7 @@
 
             <div class="form-group">
                 <label>Confirm New Password <span class="required">*</span></label>
-                <input type="text" name="new_password_confirmation"  class="form-control" id="new_password_confirmation">
+                <input type="password" name="new_password_confirmation"  class="form-control" id="new_password_confirmation">
             </div>
 
         </div>
