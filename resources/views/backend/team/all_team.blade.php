@@ -41,12 +41,12 @@
 									@foreach($team as $key=> $item)
 									<tr>
 										<td>{{ $key+1}}</td>
-										<td><img src="{{ asset($item->image) }}" alt="team" style="width:70px; height: 40px;"></td>
+										<td><img src="{{ asset($item->image) }}" alt="team" style="width:40px; height: 50px;"></td>
 										<td>{{ $item->name}}</td>
 										<td>{{ $item->position }}</td>
 										<td>
-						<a href="" class="btn btn-warning px-3 radius-30">Edit</a>
-						<a href="" class="btn btn-danger px-3 radius-30">Delete</a>
+						<a href="{{ route('edit.team',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
+						<a href="{{ route('delete.team',$item->id)}}" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
 										</td>
 									</tr>
 									@endforeach
