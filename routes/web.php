@@ -6,6 +6,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\BookAreaController;
+use App\Http\Controllers\Backend\RoomTypeController;
+use App\Http\Controllers\Backend\RoomController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -42,6 +44,22 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/book/area','UpdateBookArea')->name('update.book.area');
      });
      ///BOOK AREA ALL ROUTE END  HERE
+
+
+     /// ROOM TYPE ALL ROUTE START FROM HERE
+     Route::controller(RoomTypeController::class)->group(function(){
+        Route::get('/room/type/','RoomTypeList')->name('room.type');
+        Route::get('/add/room/type/','AddRoomType')->name('add.room.type');
+        Route::post('/store/room/type/','StoreRoomType')->name('room.type.store');
+     });
+     ///ROOM TYPE ALL ROUTE END  HERE
+
+
+     /// ROOM  ALL ROUTE START FROM HERE
+     Route::controller(RoomController::class)->group(function(){
+        Route::get('/edit/room/{id}','EditRoom')->name('edit.room');
+     });
+     ///ROOM  ALL ROUTE END  HERE
 
 
 });
