@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\BookAreaController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -33,6 +34,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/team/{id}','TeamDelete')->name('delete.team');
      });
      /// TEAM ALL ROUTE END  HERE
+
+
+     /// BOOK AREA ALL ROUTE START FROM HERE
+     Route::controller(BookAreaController::class)->group(function(){
+        Route::get('/book/area/','BookArea')->name('book.area');
+        Route::post('/update/book/area','UpdateBookArea')->name('update.book.area');
+     });
+     ///BOOK AREA ALL ROUTE END  HERE
 
 
 });
