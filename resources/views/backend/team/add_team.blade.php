@@ -21,14 +21,14 @@
 						<div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <form action="{{ route('team.store') }}" method="post" enctype="multipart/form-data">
+                    <form id="myForm" action="{{ route('team.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Name</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="form-group col-sm-9 text-secondary">
                                 <input type="text" class="form-control" name="name"  />
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Position</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="form-group col-sm-9 text-secondary">
                                 <input type="text" class="form-control" name="position"  />
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Photo</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
+                            <div class="form-group col-sm-9 text-secondary">
                                 <input id="image" type="file" class="form-control" name="image" id="formFile" />
                             </div>
                         </div>
@@ -111,5 +111,53 @@
     });
 </script>
 <!-- Script For Image Show in Input Field End -->
+
+
+<!-- Script For Validation -->
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                name: {
+                    required : true,
+                },
+                position: {
+                    required : true,
+                }, 
+
+                image: {
+                    required : true,
+                },
+                
+            },
+            messages :{
+                name: {
+                    required : 'Please Enter Name',
+                },
+                position: {
+                    required : 'Please Enter Position Name',
+                }, 
+                image: {
+                    required : 'Please Select Image',
+                }, 
+                 
+
+            },
+            errorElement : 'span', 
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+    
+</script>
+<!-- Script For Validation -->
 
 @endsection
