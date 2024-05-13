@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
      /// TEAM ALL ROUTE START FROM HERE
      Route::controller(TeamController::class)->group(function(){
         Route::get('/all/team','AllTeam')->name('all.team');
+        Route::get('/add/team','AddTeam')->name('add.team');
+        Route::post('/store/team','TeamStore')->name('team.store');
      });
      /// TEAM ALL ROUTE END  HERE
 
