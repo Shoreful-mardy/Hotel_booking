@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
      /// ROOM  ALL ROUTE START FROM HERE
      Route::controller(RoomController::class)->group(function(){
         Route::get('/edit/room/{id}','EditRoom')->name('edit.room');
+        Route::post('/update/room/{id}','UpdateRoom')->name('update.room');
      });
      ///ROOM  ALL ROUTE END  HERE
 
