@@ -18,8 +18,9 @@ class RoomController extends Controller
 {
     public function EditRoom($id){
         $basic_facility = Facility::where('room_id', $id)->get();
+        $multiimage = MultiImage::where('room_id', $id)->get();
         $edit_data = Room::find($id);
-        return view('backend.room.rooms.edit_room',compact('edit_data','basic_facility'));
+        return view('backend.room.rooms.edit_room',compact('edit_data','basic_facility','multiimage'));
     }//End Method
 
 
@@ -118,6 +119,31 @@ class RoomController extends Controller
             return redirect()->back()->with($notificaton);
 
 
+    }//End Method
+
+
+    public function MultiImageDelete($id){
+       $deleteData = MultiImage::where('id',$id)->first();
+        if ($deleteData) {
+             $imagePath = $deleteData->multi_img;
+             //Check if The File exists before unlink
+             if (file_exists($imagePath)) {
+                 unlink($imagePath);
+                 echo "Image unlinked Successfully";
+             }else{
+                echo "Image Dosen't Exist";
+             }
+
+             ///Delete  the Recod From Database
+
+             MultiImage::where('id',$id)->delete();
+         } 
+        $notificaton = array(
+                'message' => 'MultiImage delete Successfully',
+                'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notificaton);
     }//End Method
 
 

@@ -63,7 +63,13 @@
 
     <div class="col-md-6">
         <label for="input4" class="form-label">Gallery Image</label>
-        <input type="file" name="multi_img[]" class="form-control" id="multiImg" multiple accept="image/jpeg, image/jpg, image/gif, image/png">
+        <input type="file" name="multi_img[]" class="form-control" id="multiImg" multiple accept="image/jpeg, image/jpg, image/gif, image/png"><br>
+
+        @foreach($multiimage as $item)
+            <img src="{{ (!empty($item->multi_img)) ? url('upload/rooming/multi_img/'.$item->multi_img) : url('upload/no_image.jpg')}}" alt="Room" class="bg-primary" width="60" height="60">
+            <a href="{{ route('multi.image.delete',$item->id)}}"><i class="lni lni-close"></i></a>
+        @endforeach
+
         <div class="row" id="preview_img">
             
         </div>
