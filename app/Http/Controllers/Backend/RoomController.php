@@ -148,6 +148,26 @@ class RoomController extends Controller
     }//End Method
 
 
+    public function StoreRoomNo(Request $request,$id){
+
+         RoomNumber::insert([
+            'room_id' => $id,
+            'room_type_id' => $request->room_type_id,
+            'room_type_no' => $request->room_type_no,
+            'status' => $request->status,
+         ]);
+
+         $notificaton = array(
+                'message' => 'Room Number Added Successfully',
+                'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notificaton);
+
+
+    }//End Method
+
+
 
 
 

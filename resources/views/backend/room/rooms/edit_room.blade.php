@@ -242,7 +242,12 @@
         </a>
 
         <div class="roomnoHide" id="roomnoHide">
-        <form>
+        <form method="post" action="{{ route('store.room.no',$edit_data->id)}}">
+
+            @csrf
+
+
+            <input type="hidden" name="room_type_id" value="{{ $edit_data->roomtype_id }}">
             <div class="row">
                 <div class="col-md-4">
                 <label for="input2" class="form-label">Room No</label>
@@ -251,10 +256,10 @@
 
                 <div class="col-md-4">
                 <label for="input7" class="form-label">Status</label>
-                <select name="view" id="input7" class="form-select">
+                <select name="status" id="input7" class="form-select">
                     <option selected="">Select Status...</option>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
                 </select>
                 </div>
 
