@@ -61,6 +61,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/room/{id}','UpdateRoom')->name('update.room');
         Route::get('/multi/image/delete/{id}','MultiImageDelete')->name('multi.image.delete');
         Route::post('/store/room/no/{id}','StoreRoomNo')->name('store.room.no');
+        Route::get('/edit/room/no/{id}','EditRoomNo')->name('edit.room.number');
+        Route::post('/update/room/no/{id}','UpdateRoomNo')->name('update.room.no');
      });
      ///ROOM  ALL ROUTE END  HERE
 

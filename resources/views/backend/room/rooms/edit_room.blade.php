@@ -279,14 +279,23 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach($allroomNo as $item)
                 <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td>{{ $item->room_type_no}}</td>
                     <td>
-<a href="" class="btn btn-warning px-3 radius-30">Edit</a>
+                        @if($item->status == 1)
+                         Active 
+                        @else
+                         Inactive 
+                        @endif
+                    </td>
+                    <td>
+<a href="{{ route('edit.room.number',$item->id ) }}" class="btn btn-warning px-3 radius-30">Edit</a>
 <a href="" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
                     </td>
                 </tr>
+ @endforeach
             </tbody>
         </table>
     </div>

@@ -21,7 +21,8 @@ class RoomController extends Controller
         $basic_facility = Facility::where('room_id', $id)->get();
         $multiimage = MultiImage::where('room_id', $id)->get();
         $edit_data = Room::find($id);
-        return view('backend.room.rooms.edit_room',compact('edit_data','basic_facility','multiimage'));
+        $allroomNo = RoomNumber::where('room_id', $id)->get();
+        return view('backend.room.rooms.edit_room',compact('edit_data','basic_facility','multiimage','allroomNo'));
     }//End Method
 
 
@@ -165,6 +166,30 @@ class RoomController extends Controller
         return redirect()->back()->with($notificaton);
 
 
+    }//End Method
+
+
+    public function EditRoomNo($id){
+
+        $edit_room = RoomNumber::find($id);
+
+        return view('backend.room.rooms.edit_room_no',compact('edit_room'));
+
+    }//End Method
+
+
+    public function UpdateRoomNo(Request $request,$id){
+        RoomNumber::findOrFail($id)->update([
+            'room_type_no' => $request->room_type_no,
+            'status' => $request->status,
+         ]);
+
+         $notificaton = array(
+                'message' => 'Room Number Update Successfully',
+                'alert-type' => 'success'
+        );
+
+        return redirect()->route('room.type')->with($notificaton);
     }//End Method
 
 
