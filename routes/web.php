@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/store/room/no/{id}','StoreRoomNo')->name('store.room.no');
         Route::get('/edit/room/no/{id}','EditRoomNo')->name('edit.room.number');
         Route::post('/update/room/no/{id}','UpdateRoomNo')->name('update.room.no');
+        Route::get('/delete/room/no/{id}','DeleteRoomNo')->name('delete.room.number');
      });
      ///ROOM  ALL ROUTE END  HERE
 

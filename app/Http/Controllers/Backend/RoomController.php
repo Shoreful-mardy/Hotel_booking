@@ -193,6 +193,19 @@ class RoomController extends Controller
     }//End Method
 
 
+    public function DeleteRoomNo($id){
+        RoomNumber::findOrFail($id)->delete();
+
+        $notificaton = array(
+                'message' => 'Room Number Deleted Successfully',
+                'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notificaton);
+
+    }//End Method
+
+
 
 
 
