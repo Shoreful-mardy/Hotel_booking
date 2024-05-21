@@ -44,7 +44,7 @@
 									@endphp
 									<tr>
 										<td>{{ $key+1}}</td>
-										<td><img src="{{ (!empty($item->room->image)) ? url('upload/roomimg/'.$item->room->image) : url('upload/no_image.jpg') }}" alt="Image" style="width:40px; height: 50px;"></td>
+										<td><img src="{{ (!empty($item->room->image)) ? url('upload/rooming/'.$item->room->image) : url('upload/no_image.jpg') }}" alt="Image" style="width:40px; height: 50px;"></td>
 										<td>{{ $item->name}}</td>
 										<td>
 

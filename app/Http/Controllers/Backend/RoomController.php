@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Room;
 use App\Models\Facility;
 use App\Models\MultiImage;
+use App\Models\RoomNumber;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
