@@ -91,6 +91,7 @@ require __DIR__.'/auth.php';
 
 /// FRONTENT ROOM  ALL ROUTE START FROM HERE
  Route::controller(FrontendRoomController::class)->group(function(){
-    Route::get('/Rooms/','AllFrontendRooms')->name('froom.all');
+    Route::get('all/rooms/','AllFrontendRooms')->name('froom.all');
+    Route::get('/room/details/{id}','RoomDetailsPage');
  });
 ///FRONTENT ROOM  ALL ROUTE END  HERE

@@ -7,7 +7,7 @@
                 <div class="inner-title">
                     <ul>
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>Rooms</li>
@@ -29,11 +29,11 @@
    @foreach($rooms as $item)        	
     <div class="col-lg-4 col-md-6">
         <div class="room-card">
-            <a href="room-details.html">
-                <img src="{{ asset('/upload/rooming/'.$item->image) }}" alt="Images" style="width: 550px; height: 300px; " >
+            <a href="{{ url('room/details/'.$item->id) }}">
+                <img src="{{ asset('/upload/rooming/'.$item->image) }}" alt="Images" style="width: 550px; height: 400px; " >
             </a>
             <div class="content">
-                <h6><a href="room-details.html">{{ $item['type']['name'] }}</a></h6>
+                <h6><a href="{{ url('room/details/'.$item->id) }}">{{ $item['type']['name'] }}</a></h6>
                 <ul>
                     <li class="text-color">${{ $item->price}}</li>
                     <li class="text-color">Per Night</li>
@@ -64,6 +64,7 @@
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
