@@ -32,7 +32,7 @@
                              <h3>
                                  <a href="room-details.html">{{ $item['type']['name'] }}</a>
                             </h3>
-                            <span>{{ $item->price}} / Per Night </span>
+                            <span>${{ $item->price}} / Per Night </span>
                             <div class="rating">
                                 <i class='bx bxs-star'></i>
                                 <i class='bx bxs-star'></i>

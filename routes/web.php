@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\BookAreaController;
 use App\Http\Controllers\Backend\RoomTypeController;
+use App\Http\Controllers\Frontend\FrontendRoomController;
 use App\Http\Controllers\Backend\RoomController;
 
 // Route::get('/', function () {
@@ -88,3 +89,8 @@ require __DIR__.'/auth.php';
  Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
  // admin login route
 
+/// FRONTENT ROOM  ALL ROUTE START FROM HERE
+ Route::controller(FrontendRoomController::class)->group(function(){
+    Route::get('/Rooms/','AllFrontendRooms')->name('froom.all');
+ });
+///FRONTENT ROOM  ALL ROUTE END  HERE
