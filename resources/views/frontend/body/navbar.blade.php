@@ -23,7 +23,7 @@
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
+                                    <a href="{{ url('/')}}" class="nav-link active">
                                         Home 
                                     </a>
                                 </li>
