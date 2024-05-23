@@ -27,15 +27,21 @@
                 </div>
                 <div class="row pt-45">
 
-    <?php $empty_array = [];  ?>            	
+    <?php $empty_array = [];  ?> 
+
    @foreach($rooms as $item)
+
    @php
-   	$bookings = App\Models\Booking::withCount('assign_rooms')->whereId('id',$check_date_booking_id)->where('room_id',$item->id)->get()->toArray();
+
+   	$bookings = App\Models\Booking::withCount('assign_rooms')->whereIn('id',$check_date_booking_id)->where('room_id',$item->id)->get()->toArray();
 
    	$total_book_room = array_sum(array_column($bookings,'assign_rooms_count'));
-   	$av_room =  $item->room_number->count-$total_book_room;
+   	$av_room = @$item->room_number_count-$total_book_room;
 
-   @endphp        	
+   @endphp
+
+   @if($av_room > 0 && old('person') <= $item->total_adult)
+      	
     <div class="col-lg-4 col-md-6">
         <div class="room-card">
             <a href="{{ url('room/details/'.$item->id) }}">
@@ -57,7 +63,16 @@
             </div>
         </div>
     </div>
+    @else
+
+    <?php array_push($empty_array,$item->id) ?>
+
+    @endif 
     @endforeach
+
+    @if(count($rooms) == count($empty_array))
+    <p class="text-center text-danger">Sorry No Data Found</p>
+    @endif
                     <div class="col-lg-12 col-md-12">
                         <div class="pagination-area">
                             <a href="#" class="prev page-numbers">

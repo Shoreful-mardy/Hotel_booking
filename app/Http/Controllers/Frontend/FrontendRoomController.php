@@ -36,7 +36,7 @@ class FrontendRoomController extends Controller
         if ($request->check_in == $request->check_out) {
             $notificaton = array(
                 'message' => 'Something Want To Wrong',
-                'alert-type' => 'success'
+                'alert-type' => 'error'
             );
             return redirect()->back()->with($notificaton);
         }
