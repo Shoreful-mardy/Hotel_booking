@@ -24,7 +24,7 @@
                                 <div class="form-group">
                                     <label>CHECK IN TIME</label>
                                     <div class="input-group">
-                                        <input id="datetimepicker" type="text" class="form-control" placeholder="11/02/2020">
+                  <input autocomplete="off" type="text" name="check_in" required class="form-control dt_picker" placeholder="yyy-mm-dd">
                                         <span class="input-group-addon"></span>
                                     </div>
                                     <i class='bx bxs-chevron-down'></i>	
@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label>CHECK OUT TIME</label>
                                     <div class="input-group">
-                                        <input id="datetimepicker-check" type="text" class="form-control" placeholder="11/02/2020">
+                    <input autocomplete="off" type="text" name="check_out" required class="form-control dt_picker" placeholder="yyy-mm-dd">
                                         <span class="input-group-addon"></span>
                                     </div>
                                     <i class='bx bxs-chevron-down'></i>	
