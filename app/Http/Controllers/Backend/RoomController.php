@@ -43,6 +43,7 @@ class RoomController extends Controller
         $room->discount = $request->discount;
         $room->short_desc = $request->short_desc;
         $room->long_desc = $request->long_desc;
+        $room->status = 1;
 
 
         // Update Thambnail Image
