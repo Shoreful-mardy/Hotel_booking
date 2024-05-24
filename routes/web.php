@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
      /// USER CHECKOUT ROUTE START FROM HERE
      Route::controller(BookingController::class)->group(function(){
         Route::get('/checkout/','CheckOut')->name('checkout');
+        Route::post('/booking/store/','UserBookingStore')->name('user_booking_store');
      });
      ///  USER CHECKOUT ROUTE END HERE
 

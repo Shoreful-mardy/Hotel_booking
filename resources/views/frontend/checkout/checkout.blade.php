@@ -105,6 +105,7 @@
 											<input type="text" class="form-control">
 										</div>
 									</div>
+<p>Session value: {{ json_encode(session('book_date')) }}</p>
 
 									<div class="col-lg-12 col-md-12">
 										<div class="form-check">
