@@ -95,5 +95,6 @@ require __DIR__.'/auth.php';
     Route::get('/room/details/{id}','RoomDetailsPage');
     Route::get('/booking/search/','BookingSearch')->name('booking.search');
     Route::get('/search/room/details/{id}','SearchRoomDetails')->name('search_room_details');
+    Route::get('/check_room_availability/', 'CheckRoomAvailability')->name('check_room_availability');
  });
 ///FRONTENT ROOM  ALL ROUTE END  HERE
