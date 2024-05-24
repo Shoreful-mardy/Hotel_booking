@@ -88,16 +88,16 @@
   <tbody>
     <tr>
       <td><p>Subtotal</p></td>
-      <td style="text-align: right;"><p> <span class="t_subtotal">0</span> </p></td>
+      <td style="text-align: right;"><p>$<span class="t_subtotal">0</span> </p></td>
     </tr>
     <tr>
       <td><p>Discount</p></td>
-      <td style="text-align: right;"><p> <span class="t_discount">0</span> </p></td>
+      <td style="text-align: right;"><p>$<span class="t_discount">0</span> </p></td>
     </tr>
 
     <tr>
       <td><p>Total</p></td>
-      <td style="text-align: right;"><p> <span class="t_g_total">0</span> </p></td>
+      <td style="text-align: right;"><p>$<span class="t_g_total">0</span> </p></td>
     </tr>
    </tbody>
 </table>
@@ -363,9 +363,9 @@
 
        var discount_price = (parseInt(discount_p)/100)*sub_total;
 
-       $(".t_subtotal").text("$"+sub_total);
-       $(".t_discount").text("$"+discount_price);
-       $(".t_g_total").text("$"+sub_total-discount_price);
+       $(".t_subtotal").text(sub_total);
+       $(".t_discount").text(discount_price);
+       $(".t_g_total").text(sub_total-discount_price);
 
     }
 

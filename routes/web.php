@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\BookAreaController;
 use App\Http\Controllers\Backend\RoomTypeController;
 use App\Http\Controllers\Frontend\FrontendRoomController;
+use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Backend\RoomController;
 
 // Route::get('/', function () {
@@ -19,12 +20,36 @@ Route::get('/dashboard', function () {
     return view('frontend.dashboard.user_dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//===========Start User Group Middleware=======
 Route::middleware('auth')->group(function () {
+
     Route::get('/profile', [UserController::class, 'Profile'])->name('user.profile');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
-     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
-     Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
-     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
+    Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
+    Route::get('/user/change/password', [UserController::class, 'UserChangePassword'])->name('user.change.password');
+    Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
+
+     /// USER CHECKOUT ROUTE START FROM HERE
+     Route::controller(BookingController::class)->group(function(){
+        Route::get('/checkout/','CheckOut')->name('checkout');
+     });
+     ///  USER CHECKOUT ROUTE END HERE
+
+
+
+
+});
+//=======End User Group Middleware=======
+
+require __DIR__.'/auth.php';
+//===========Start Admin Group Middleware=======
+ Route::middleware(['auth','roles'])->group(function(){
+     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
+     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+     Route::post('/admin/change/update', [AdminController::class, 'AdminChangeUpdate'])->name('admin.change.update');
 
 
      /// TEAM ALL ROUTE START FROM HERE
@@ -70,19 +95,6 @@ Route::middleware('auth')->group(function () {
      });
      ///ROOM  ALL ROUTE END  HERE
 
-
-});
-
-require __DIR__.'/auth.php';
-//===========Start Admin Group Middleware=======
- Route::middleware(['auth','roles'])->group(function(){
-     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
-     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
-     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
-     Route::post('/admin/change/update', [AdminController::class, 'AdminChangeUpdate'])->name('admin.change.update');
-
  });
  //=======End Admin Group Middleware=======
 // admin login route
@@ -98,3 +110,4 @@ require __DIR__.'/auth.php';
     Route::get('/check_room_availability/', 'CheckRoomAvailability')->name('check_room_availability');
  });
 ///FRONTENT ROOM  ALL ROUTE END  HERE
+
