@@ -5,11 +5,40 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
+use App\Models\Room;
+use App\Models\Facility;
+use App\Models\MultiImage;
+use App\Models\RoomNumber;
+use App\Models\RoomType;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Carbon\Carbon;
 
 class BookingController extends Controller
 {
     public function CheckOut(){
-        return view('frontend.checkout.checkout');
+
+        if (Session::has('book_date')) {
+            $book_data = Session::get('book_date');
+            $room = Room::find($book_data['room_id']);
+
+            $toDate = Carbon::parse($book_data['check_in']);
+            $fromDate = Carbon::parse($book_data['check_out']);
+
+            $nights = $toDate->diffInDays($fromDate);
+            return view('frontend.checkout.checkout',compact('book_data','room','nights'));
+        }else{
+
+            $notificaton = array(
+                'message' => 'Something Want To Wrong',
+                'alert-type' => 'error'
+            );
+            return redirect('/')->with($notificaton);
+        }
+
+        
     }//End Method
 
     public function UserBookingStore(Request $request){
