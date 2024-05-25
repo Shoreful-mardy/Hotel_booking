@@ -75,6 +75,22 @@ class BookingController extends Controller
     }//End Method
 
 
+    public function CheckOutStore(Request $request){
+
+        $this->validate( $request,[
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'country' => 'required',
+            'address' => 'required',
+            'state' => 'required',
+            'zip_code' => 'required',
+            'payment_method' => 'required',
+        ])
+
+    }//End Method
+
+
 
 
 
