@@ -11,10 +11,14 @@ use App\Models\Facility;
 use App\Models\MultiImage;
 use App\Models\RoomNumber;
 use App\Models\RoomType;
+use App\Models\Booking;
+use App\Models\RoomBookedDate;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -77,7 +81,7 @@ class BookingController extends Controller
 
     public function CheckOutStore(Request $request){
 
-        $this->validate( $request,[
+        $request->validate([
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
@@ -86,8 +90,72 @@ class BookingController extends Controller
             'state' => 'required',
             'zip_code' => 'required',
             'payment_method' => 'required',
-        ])
+        ]);
 
+            $book_data = Session::get('book_date');
+            $toDate = Carbon::parse($book_data['check_in']);
+            $fromDate = Carbon::parse($book_data['check_out']);
+            $total_nights = $toDate->diffInDays($fromDate);
+            $room = Room::find($book_data['room_id']);
+            $subtotal = $room->price * $total_nights * $book_data['number_of_rooms'];
+            $discount = ($room->discount/100) * $subtotal;
+            $total_price = $subtotal - $discount ;
+            $code = rand(000000000,999999999);
+            //End Calcutlation all that Data and genarete Some Random Code
+
+            ////Insert Data to Booking Table
+            $data = new Booking();
+            $data->room_id = $room->id;
+            $data->user_id = Auth::user()->id;
+            $data->check_in = date('Y-m-d',strtotime($book_data['check_in']));
+            $data->check_out = date('Y-m-d',strtotime($book_data['check_out']));
+            $data->person = $book_data['person'];
+            $data->number_of_room = $book_data['number_of_rooms'];
+            $data->totel_night = $total_nights;
+            $data->actual_price = $room->price;
+            $data->subtotel = $subtotal;
+            $data->discount = $discount;
+            $data->totel_price = $total_price;
+            $data->payment_method = $request->payment_method;
+            $data->transation_id = '';
+            $data->payment_status = 0;
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->phone = $request->phone;
+            $data->country = $request->country;
+            $data->state = $request->state;
+            $data->zip_code = $request->zip_code;
+            $data->address = $request->address;
+            $data->code = $code;
+            $data->status = 0;
+            $data->created_at = Carbon::now();
+            $data->save();
+            ////Insert Data to Booking Table
+
+            
+
+            $sdate = date('Y-m-d',strtotime($book_data['check_in']));
+            $edate = date('Y-m-d',strtotime($book_data['check_out']));
+            $eldate = Carbon::create($edate)->subDay();
+            $d_period = CarbonPeriod::create($sdate,$eldate);
+            ////Insert Data to Room Booked Date Table
+            foreach ($d_period as $period) {
+                $book_dates = new RoomBookedDate();
+                $book_dates->booking_id = $data->id;
+                $book_dates->room_id = $room->id;
+                $book_dates->book_date = date('Y-m-d',strtotime($period));
+                $book_dates->save();
+            }
+
+            ////Insert Data to Room Booked Date Table
+            Session::forget('book_date');
+            //Remove Session Data
+
+            $notificaton = array(
+                'message' => 'Booking Successfully Done',
+                'alert-type' => 'success'
+            );
+            return redirect('/')->with($notificaton);
     }//End Method
 
 
