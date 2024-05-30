@@ -114,11 +114,10 @@
           </div>
 
     </div>
-
-                                            <br>
+<br>
               
     <table class="table" style="width: 100%">
-
+    	<input type="hidden" name="price" value="{{ $room->price }}">
     	@php
     		$subtotal = $room->price * $nights * $book_data['number_of_rooms'];
     		$discount = ($room->discount/100) * $subtotal;
@@ -244,7 +243,7 @@
                   }else{
                         document.getElementById('myButton').disabled = true;
 
-                        var $form = $(".require-validation"),
+                        var $form= $(".require-validation"),
                                 inputSelector = ['input[type=email]', 'input[type=password]',
                                       'input[type=text]', 'input[type=file]',
                                       'textarea'].join(', '),

@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/checkout/','CheckOut')->name('checkout');
         Route::post('/booking/store/','UserBookingStore')->name('user_booking_store');
         Route::post('/checkout/store/','CheckOutStore')->name('checkout.store');
+        Route::match(['get', 'post'],'/stripe_pay', [BookingController::class, 'stripe_pay'])->name('stripe_pay');
      });
      ///  USER CHECKOUT ROUTE END HERE
 

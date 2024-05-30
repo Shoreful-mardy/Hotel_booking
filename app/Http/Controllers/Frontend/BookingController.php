@@ -19,6 +19,7 @@ use Intervention\Image\Drivers\Gd\Driver;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Auth;
+use Stripe;
 
 class BookingController extends Controller
 {
@@ -34,15 +35,12 @@ class BookingController extends Controller
             $nights = $toDate->diffInDays($fromDate);
             return view('frontend.checkout.checkout',compact('book_data','room','nights'));
         }else{
-
             $notificaton = array(
                 'message' => 'Something Want To Wrong',
                 'alert-type' => 'error'
             );
             return redirect('/')->with($notificaton);
         }
-
-        
     }//End Method
 
     public function UserBookingStore(Request $request){
@@ -70,17 +68,13 @@ class BookingController extends Controller
         $data['check_in'] = date('Y-m-d',strtotime($request->check_in));
         $data['check_out'] = date('Y-m-d',strtotime($request->check_out));
         $data['room_id'] = $request->room_id;
-
         Session::put('book_date',$data);
-
         return redirect()->route('checkout');
-
-
     }//End Method
 
 
     public function CheckOutStore(Request $request){
-
+        
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -102,6 +96,31 @@ class BookingController extends Controller
             $total_price = $subtotal - $discount ;
             $code = rand(000000000,999999999);
             //End Calcutlation all that Data and genarete Some Random Code
+
+        if ($request->payment_method == 'Stripe') {
+                Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+                $s_pay = Stripe\Charge::create([
+                    "amount" => $total_price * 100,
+                    "currency" => "usd",
+                    "source" => $request->stripeToken,
+                    "description" => "Payment For Booking. Booking No".$code,
+                ]);
+
+                if ($s_pay['status'] == 'succeeded') {
+                    $payment_status = 1;
+                    $transation_id = $s_pay->id;
+                }else{
+                    $notificaton = array(
+                        'message' => 'Sorry!! Your Payment Faild',
+                        'alert-type' => 'error'
+                    );
+                    return redirect()->back()->with($notificaton);
+                }
+            }else{
+                $payment_status = 0;
+                $transation_id = '';
+            }
+
 
             ////Insert Data to Booking Table
             $data = new Booking();
@@ -156,6 +175,7 @@ class BookingController extends Controller
                 'alert-type' => 'success'
             );
             return redirect('/')->with($notificaton);
+
     }//End Method
 
 
