@@ -46,7 +46,7 @@
 									@foreach($alldata as $key=> $item)
 									<tr>
 										<td>{{ $key+1}}</td>
-										<td>{{ $item->code}}</td>
+										<td> {{ $item->code}}</td>
 										<td>{{ $item->created_at->format('d/m/y')}}</td>
 										<td>{{ $item['user']['name'] }}</td>
 										<td>{{ $item['room']['type']['name'] }}</td>
@@ -68,8 +68,8 @@
 											@endif
 										</td>
 										<td>
-						<a href="{{ route('edit.team',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
-						<a href="{{ route('delete.team',$item->id)}}" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
+						<a href="{{ route('edit_booking',$item->id)}}" class="badge rounded-pill bg-warning text-dark p-2">Edit</a>
+						<a href="{{ route('delete.team',$item->id)}}" id="delete" class="badge rounded-pill bg-danger">Delete</a>
 										</td>
 									</tr>
 									@endforeach

@@ -101,6 +101,7 @@ require __DIR__.'/auth.php';
      /// Admin booking ALL ROUTE START FROM HERE
      Route::controller(BookingController::class)->group(function(){
         Route::get('/booking/list/','BookingList')->name('booking.list');
+        Route::get('/edit/booking/{id}','EditBooking')->name('edit_booking');
      });
      ///Admin booking ALL ROUTE END  HERE
 
