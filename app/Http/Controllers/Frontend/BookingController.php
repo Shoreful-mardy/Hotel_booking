@@ -179,6 +179,14 @@ class BookingController extends Controller
     }//End Method
 
 
+    public function BookingList(){
+
+        $alldata = Booking::orderBy('id','DESC')->get();
+        return view('backend.booking.booking_list',compact('alldata'));
+
+    }//End Method
+
+
 
 
 

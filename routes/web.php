@@ -98,8 +98,18 @@ require __DIR__.'/auth.php';
      });
      ///ROOM  ALL ROUTE END  HERE
 
+     /// Admin booking ALL ROUTE START FROM HERE
+     Route::controller(BookingController::class)->group(function(){
+        Route::get('/booking/list/','BookingList')->name('booking.list');
+     });
+     ///Admin booking ALL ROUTE END  HERE
+
  });
+
  //=======End Admin Group Middleware=======
+
+
+
 // admin login route
  Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login');
  // admin login route
