@@ -177,7 +177,30 @@
 		
 	</div>
 </div>
-         			
+
+@php
+	$assign_rooms = App\Models\BookingRoomList::with('room_number')->where('booking_id',$editData->id)->get();
+
+@endphp
+<br>
+@if(count($assign_rooms) > 0)
+<table class="table table-bordered">
+	<tr>
+		<th>Assigned Room Number</th>
+		<th>Action</th>
+	</tr>
+	@foreach($assign_rooms as $item)
+	<tr>
+		<td>{{ $item->room_number->room_type_no}}</td>
+		<td>
+			<a href="">Delete</a>
+		</td>
+	</tr>
+	@endforeach
+	
+
+</table>
+@endif      			
          		</div>
         <form action="{{ route('update.booking.status',$editData->id)}}" method="post"> 
         	@csrf
@@ -279,7 +302,7 @@
 
 	$(document).ready(function(){
 		getAvaility();
-		
+
 
 		$(".assign_room").on('click', function(){
             $.ajax({
