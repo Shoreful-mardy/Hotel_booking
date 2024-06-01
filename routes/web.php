@@ -107,6 +107,7 @@ require __DIR__.'/auth.php';
         //For Assign Room Route
         Route::get('/assign/room/{id}','AssignRoom')->name('assign_room');
         Route::get('/assign/room/store/{booking_id}/{room_no_id}','AssignRoomStore')->name('assign_room_store');
+        Route::get('/assign/room/delete/{id}','AssignRoomDelete')->name('assign_room_delete');
      });
      ///Admin booking ALL ROUTE END  HERE
 

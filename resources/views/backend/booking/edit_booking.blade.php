@@ -193,13 +193,17 @@
 	<tr>
 		<td>{{ $item->room_number->room_type_no}}</td>
 		<td>
-			<a href="">Delete</a>
+			<a href="{{ route('assign_room_delete',$item->id)}}" id="delete">Delete</a>
 		</td>
 	</tr>
 	@endforeach
 	
 
 </table>
+@else
+<div class="alert alert text-danger">
+	Not Found Assign Room
+</div>
 @endif      			
          		</div>
         <form action="{{ route('update.booking.status',$editData->id)}}" method="post"> 

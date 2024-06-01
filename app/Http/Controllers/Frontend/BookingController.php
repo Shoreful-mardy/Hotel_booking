@@ -278,7 +278,7 @@ class BookingController extends Controller
         $check_data = BookingRoomList::where('booking_id',$booking_id)->count();
 
         if ($check_data < $booking->number_of_room) {
-            
+
             $assign_data = new BookingRoomList();
             $assign_data->booking_id = $booking_id;
             $assign_data->room_id = $booking->room_id;
@@ -297,6 +297,18 @@ class BookingController extends Controller
             return redirect()->back()->with($notificaton);
         }
 
+    }//End Method
+
+    public function AssignRoomDelete($id){
+ 
+    $assign_room = BookingRoomList::find($id);
+    $assign_room->delete();
+
+    $notificaton = array(
+            'message' => 'Assing Room Delete Successfully',
+            'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notificaton);
     }//End Method
 
 
