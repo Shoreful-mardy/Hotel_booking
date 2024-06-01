@@ -1,5 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <div class="page-content">
 				<div class="row row-cols-1 row-cols-md-2 row-cols-xl-5">
 
@@ -169,6 +170,13 @@
          					
          				</table>
          			</div>
+
+<div class="col-md-12" style="clear: both;">
+	<div class="margin-top:60px;  margin-bottom:20px;">
+		 <a href="javascript::void(0)" class="btn btn-primary assign_room"> Assign Room</a>
+		
+	</div>
+</div>
          			
          		</div>
         <form action="{{ route('update.booking.status',$editData->id)}}" method="post"> 
@@ -218,15 +226,16 @@
 			</div>
 		</div>
 		   <div class="card-body">
-				<form action="">
+				<form action="{{ route('update.booking',$editData->id) }}" method="post">
+					@csrf
 					<div class="row">
 						<div class="col-md-12 mb-2">
 							<label for="">Check In</label>
-							<input type="date" required name="check_in" class="form-control" value="{{ $editData->check_in}}">
+							<input type="date" required name="check_in" id="check_in" class="form-control" value="{{ $editData->check_in}}">
 						</div>
 						<div class="col-md-12 mb-2">
 							<label for="">Check Out</label>
-							<input type="date" required name="check_out" class="form-control" value="{{ $editData->check_out}}">
+							<input type="date" required name="check_out" id="check_out" class="form-control" value="{{ $editData->check_out}}">
 						</div>
 
 						<div class="col-md-12 mb-2">
@@ -234,8 +243,10 @@
 							<input type="number" required name="number_of_room" class="form-control" value="{{ $editData->number_of_room}}">
 						</div>
 
+						<input type="hidden" name="available_room" id="available_room" class="form-control" >
+
 						<div class="col-md-12 mb-2">
-							<label for="">Availability : <span class="text-success availability"></span></label>
+							<label for="" >Availability : <span class="text-success availability"></span></label>
 						</div>
 						<div class="mt-2">
 							<button type="submit" class="btn btn-primary">Update</button>
@@ -248,4 +259,59 @@
    </div>
 	</div><!--end row-->			
 </div>
+
+<!-- Model Start -->
+		<div class="modal fade myModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Rooms</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+
+<!-- Model End -->
+
+<script>
+
+	$(document).ready(function(){
+		getAvaility();
+		
+
+		$(".assign_room").on('click', function(){
+            $.ajax({
+                url: "{{ route('assign_room',$editData->id) }}",
+                success: function(data){
+                    $('.myModal .modal-body').html(data);
+                    $('.myModal').modal('show');
+                }
+            });
+            return false;
+        });
+
+
+
+	});
+
+	 function getAvaility() {
+
+	 	var check_in = $('#check_in').val();
+	 	var check_out = $('#check_out').val();
+	 	var room_id = "{{ $editData->room_id}}";
+
+       $.ajax({
+          url: "{{ route('check_room_availability') }}",
+          data: {room_id:room_id, check_in:check_in, check_out:check_out},
+          success: function(data){
+             $(".availability").text(data['available_room']);
+             $("#available_room").val(data['available_room']);
+             price_calculate(data['total_nights']);
+          }
+       });
+    }
+
+</script>
 @endsection

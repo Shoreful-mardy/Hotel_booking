@@ -102,7 +102,11 @@ require __DIR__.'/auth.php';
      Route::controller(BookingController::class)->group(function(){
         Route::get('/booking/list/','BookingList')->name('booking.list');
         Route::get('/edit/booking/{id}','EditBooking')->name('edit_booking');
-        Route::post('/update/booking/{id}','UpdateBookingStatus')->name('update.booking.status');
+        Route::post('/update/booking/status/{id}','UpdateBookingStatus')->name('update.booking.status');
+        Route::post('/update/booking/{id}','UpdateBooking')->name('update.booking');
+        //For Assign Room Route
+        Route::get('/assign/room/{id}','AssignRoom')->name('assign_room');
+        Route::get('/assign/room/store/{booking_id}/{room_no_id}','AssignRoomStore')->name('assign_room_store');
      });
      ///Admin booking ALL ROUTE END  HERE
 
