@@ -132,15 +132,15 @@
          					</tr>
          					<tr>
          						<td>Name:</td>
-         						<td>{{ $editData->user->name}}</td>
+         						<td>{{ $editData->name}}</td>
          					</tr>
          					<tr>
          						<td>Email:</td>
-         						<td>{{ $editData->user->email}}</td>
+         						<td>{{ $editData->email}}</td>
          					</tr>
          					<tr>
          						<td>Phone No:</td>
-         						<td>{{ $editData->user->phone}}</td>
+         						<td>{{ $editData->phone}}</td>
          					</tr>
          					
          				</table>

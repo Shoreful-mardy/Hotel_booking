@@ -48,7 +48,7 @@
 										<td>{{ $key+1}}</td>
 										<td> {{ $item->code}}</td>
 										<td>{{ $item->created_at->format('d/m/y')}}</td>
-										<td>{{ $item['user']['name'] }}</td>
+										<td>{{ $item->name }}</td>
 										<td>{{ $item['room']['type']['name'] }}</td>
 										<td><span class="badge bg-primary">{{ $item->check_in}}</span>  /<br><span class="badge bg-warning text-dark"> {{ $item->check_out}}</span>  </td>
 										<td>{{ $item->number_of_room}}</td>

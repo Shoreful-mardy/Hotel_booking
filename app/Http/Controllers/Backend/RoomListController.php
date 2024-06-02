@@ -16,6 +16,7 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Auth;
 
 class RoomListController extends Controller
 {
@@ -45,6 +46,105 @@ class RoomListController extends Controller
          return view('backend.room.room_list.view_roomlist',compact('room_number_list'));
 
     } // End Method 
+
+     public function AddRoomList(){
+
+        $roomtype = RoomType::all();
+        return view('backend.room.room_list.add_roomlist',compact('roomtype'));
+
+    }// End Method
+
+    public function StoreRoomList(Request $request){
+
+           if ($request->check_in == $request->check_out) {
+            $request->flash();
+            $notification = array(
+                'message' => 'You Enter Same Date',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+           }
+
+           if ($request->available_room < $request->number_of_room) {
+            $request->flash();
+            $notification = array(
+                'message' => 'You Enter Maximum Number of Rooms!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+           }
+
+           $room = Room::find($request['room_id']);
+           if ($room->room_capacity < $request->number_of_person ) {
+            $notification = array(
+                'message' => 'You Enter Maximum Number of Guest!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
+           }
+
+
+           $toDate = Carbon::parse($request['check_in']);
+           $fromDate = Carbon::parse($request['check_out']);
+           $total_nights = $toDate->diffInDays($fromDate); 
+
+           $subtotal = $room->price * $total_nights * $request->number_of_room;
+           $discount = ($room->discount/100)*$subtotal;
+           $total_price = $subtotal-$discount;
+           $code = rand(000000000,999999999); 
+
+           $data = new Booking();
+           $data->room_id = $room->id;
+           $data->user_id = Auth::user()->id;
+           $data->check_in = date('Y-m-d',strtotime($request['check_in']));
+           $data->check_out = date('Y-m-d',strtotime($request['check_out']));
+           $data->person = $request->number_of_person;
+           $data->number_of_room = $request->number_of_room;
+           $data->totel_night = $total_nights;
+
+           $data->actual_price = $room->price;
+           $data->subtotel = $subtotal;
+           $data->discount = $discount;
+           $data->totel_price = $total_price;
+           $data->payment_method = 'COD'; 
+           $data->payment_status = 0;
+
+           $data->name = $request->name;
+           $data->email = $request->email;
+           $data->phone = $request->phone;
+           $data->country = $request->country;
+           $data->state = $request->state;
+           $data->zip_code = $request->zip_code;
+           $data->address = $request->address;
+
+           $data->code = $code;
+           $data->status = 0;
+           $data->created_at = Carbon::now();
+           $data->save();
+
+        $sdate = date('Y-m-d',strtotime($request['check_in']));
+        $edate = date('Y-m-d',strtotime($request['check_out']));
+        $eldate = Carbon::create($edate)->subDay();
+        $d_period = CarbonPeriod::create($sdate,$eldate);
+        foreach ($d_period as $period) {
+            $booked_dates = new RoomBookedDate();
+            $booked_dates->booking_id = $data->id;
+            $booked_dates->room_id = $room->id;
+            $booked_dates->book_date = date('Y-m-d', strtotime($period));
+            $booked_dates->save();
+        }
+
+
+        $notification = array(
+            'message' => 'Booking Added Successfully',
+            'alert-type' => 'success'
+        ); 
+        return redirect()->back()->with($notification);  
+
+    }// End Method 
 
 
 
