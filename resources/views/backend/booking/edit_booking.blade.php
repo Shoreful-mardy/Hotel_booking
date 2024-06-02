@@ -224,7 +224,6 @@
         				<option>Select Status</option>
         				<option value="0" {{ $editData->status == 0?'selected':''}}>Pending</option>
         				<option value="1" {{ $editData->status == 1?'selected':''}}>Complete</option>
-
         			</select>
         		</div>
         		
