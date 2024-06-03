@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\FrontendRoomController;
 use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Backend\RoomListController;
+use App\Http\Controllers\Backend\SettingController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -127,6 +128,12 @@ require __DIR__.'/auth.php';
         Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist');
      });
      //Room List All Route end
+
+     /// SMTP Setting All Route start
+     Route::controller(SettingController::class)->group(function(){
+        Route::get('view/room/list/','SmtpSetting')->name('smtp.setting');
+     });
+     //SMTP Setting All Route end
 
 
 
