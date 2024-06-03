@@ -22,6 +22,8 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Auth;
 use Stripe;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookConfirm;
 
 class BookingController extends Controller
 {
@@ -202,6 +204,19 @@ class BookingController extends Controller
             'payment_status' => $request->payment_status,
             'status' => $request->status,
         ]);
+
+        //Start Sent Email
+        $sentmail = Booking::find($id);
+        $data = [
+            'check_in' => $sentmail->check_in,
+            'check_out' => $sentmail->check_out,
+            'name' => $sentmail->name,
+            'email' => $sentmail->email,
+            'phone' => $sentmail->phone,
+        ];
+        Mail::to($sentmail->email)->send(new BookConfirm($data));
+
+        //End Sent Email
 
         $notificaton = array(
             'message' => 'Information Update Successfully',
