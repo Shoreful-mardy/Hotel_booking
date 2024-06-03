@@ -39,6 +39,11 @@ Route::middleware('auth')->group(function () {
      });
      ///  USER CHECKOUT ROUTE END HERE
 
+     //User Booking Dashboard
+     Route::controller(BookingController::class)->group(function(){
+        Route::get('/user/booking/','UserBooking')->name('user.booking');
+     });
+
 
 
 
