@@ -131,7 +131,8 @@ require __DIR__.'/auth.php';
 
      /// SMTP Setting All Route start
      Route::controller(SettingController::class)->group(function(){
-        Route::get('view/room/list/','SmtpSetting')->name('smtp.setting');
+        Route::get('smtp/setting/','SmtpSetting')->name('smtp.setting');
+        Route::post('smtp/update/','SmtpUpdate')->name('smtp.update');
      });
      //SMTP Setting All Route end
 
