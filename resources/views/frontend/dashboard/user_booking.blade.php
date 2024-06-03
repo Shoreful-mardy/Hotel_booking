@@ -48,8 +48,9 @@
       <th scope="col">Customer</th>
       <th scope="col">Room</th>
       <th scope="col">Check In/Out</th>
-      <th scope="col">Total Room</th>
-      <th scope="col">Guest</th>
+      <th scope="col">Room</th>
+      <th scope="col">Status</th>
+      <th scope="col">Invoice</th>
     </tr>
   </thead>
   <tbody>
@@ -61,7 +62,14 @@
       <td>{{ $item->room->type->name}}</td>
       <td><span class="badge bg-primary">{{ $item->check_in}}</span><br><span class="badge bg-warning text-dark">{{ $item->check_in}}</span></td>
       <td>{{ $item->number_of_room}}</td>
-      <td>{{ $item->person}}</td>
+      <td>
+      	@if($item->status == 1)
+      	<span class="badge bg-success">Complete</span>
+      	@else
+      	<span class="badge bg-warning text-dark">Pending</span>
+      	@endif
+      </td>
+      <td><a href="{{ route('user.invoice',$item->id) }}">Download</a></td>
     </tr>
 @endforeach
   </tbody>

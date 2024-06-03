@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
      //User Booking Dashboard
      Route::controller(BookingController::class)->group(function(){
         Route::get('/user/booking/','UserBooking')->name('user.booking');
+        Route::get('/user/invoice/{id}','UserDownloadInvoice')->name('user.invoice');
      });
 
 

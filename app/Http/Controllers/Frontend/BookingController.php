@@ -332,6 +332,18 @@ class BookingController extends Controller
         return view('frontend.dashboard.user_booking',compact('allData'));
     }//End Method
 
+    public function UserDownloadInvoice($id){
+
+        $editData = Booking::with('room')->find($id);
+        $pdf = Pdf::loadView('backend.booking.booking_invoice',compact('editData'))
+        ->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+
+    }//End Method
+
 
 
 
