@@ -21,6 +21,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Auth;
 use Stripe;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BookingController extends Controller
 {
@@ -309,6 +310,19 @@ class BookingController extends Controller
             'alert-type' => 'success'
             );
             return redirect()->back()->with($notificaton);
+    }//End Method
+
+
+    public function DownloadInvoice($id){
+
+        $editData = Booking::with('room')->find($id);
+        $pdf = Pdf::loadView('backend.booking.booking_invoice',compact('editData'))
+        ->setPaper('a4')->setOption([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
+
     }//End Method
 
 

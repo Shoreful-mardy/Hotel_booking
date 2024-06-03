@@ -109,6 +109,8 @@ require __DIR__.'/auth.php';
         Route::get('/assign/room/{id}','AssignRoom')->name('assign_room');
         Route::get('/assign/room/store/{booking_id}/{room_no_id}','AssignRoomStore')->name('assign_room_store');
         Route::get('/assign/room/delete/{id}','AssignRoomDelete')->name('assign_room_delete');
+
+        Route::get('/download/invoice/{id}','DownloadInvoice')->name('download.invoice');
      });
      ///Admin booking ALL ROUTE END  HERE
 
@@ -119,6 +121,8 @@ require __DIR__.'/auth.php';
         Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist');
      });
      //Room List All Route end
+
+
 
  });
 

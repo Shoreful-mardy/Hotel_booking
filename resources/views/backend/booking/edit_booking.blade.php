@@ -231,6 +231,7 @@
         	<div class="row" style="margin-top: 20px;">
         	<div class="col-md-12">
         		<button type="submit" class="btn btn-primary">Update</button>
+        		<a href="{{ route('download.invoice',$editData->id) }}" class="btn btn-warning px-3"><i class="lni lni-download"> Download Invoice</i></a>
         	</div>
         	</div>
         </form>
