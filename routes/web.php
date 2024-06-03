@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\BookingController;
 use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\TestimonialController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -135,6 +136,17 @@ require __DIR__.'/auth.php';
         Route::post('smtp/update/','SmtpUpdate')->name('smtp.update');
      });
      //SMTP Setting All Route end
+
+     /// Testimonial All Route start
+     Route::controller(TestimonialController::class)->group(function(){
+        Route::get('/all/testimonial','AllTestimonial')->name('all.testimonial');
+        Route::get('/add/testimonial','AddTestimonial')->name('add.testimonial');
+        Route::post('/store/testimonial','StoreTestimonial')->name('testimonial.store');
+        Route::get('/edit/testimonial/{id}','EditTestimonial')->name('edit.testimonial');
+        Route::post('/update/testimonial/','UpdateTestimonial')->name('testimonial.update');
+        Route::get('/delete/testimonial/{id}','DeleteTestimonial')->name('delete.testimonial');
+     });
+     //Testimonial All Route end
 
 
 
