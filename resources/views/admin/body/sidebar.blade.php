@@ -24,7 +24,7 @@
 				
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-group"></i>
 						</div>
 						<div class="menu-title">Manage Team</div>
 					</a>
@@ -39,7 +39,7 @@
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-book"></i>
 						</div>
 						<div class="menu-title">Manage Book Area</div>
 					</a>
@@ -52,7 +52,7 @@
 
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="bx bx-category"></i>
+						<div class="parent-icon"><i class="fadeIn animated bx bx-home-smile"></i>
 						</div>
 						<div class="menu-title">Manage Room Type</div>
 					</a>
@@ -134,10 +134,20 @@
 					<ul>
 						<li> <a href="{{ route('all.blog.category')}}"><i class='bx bx-radio-circle'></i>All Category</a>
 						</li>
+					</ul>
+				</li>
 
-						<li> <a href="{{ route('add.testimonial')}}"><i class='bx bx-radio-circle'></i>Add Category</a>
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						</div>
+						<div class="menu-title">Blog Post</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all.blog.post')}}"><i class='bx bx-radio-circle'></i>All Blog Post</a>
 						</li>
-
+						<li> <a href="{{ route('add.blog.post')}}"><i class='bx bx-radio-circle'></i>Add Blog Post</a>
+						</li>
 					</ul>
 				</li>
 
