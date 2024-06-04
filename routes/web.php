@@ -155,6 +155,10 @@ require __DIR__.'/auth.php';
 
         Route::get('/all/blog/category','AllBlogCategory')->name('all.blog.category');
         Route::post('/store/blog/category','StoreBlogCategory')->name('store.blog.category');
+        Route::get('/edit/blog/category/{id}','EditBlogCategory');
+        Route::post('/update/blog/category','UpdateBlogCategory')->name('update.blog.category');
+        Route::get('/delete/blog/category/{id}','DeleteBlogCategory')->name('delete.blog.category');
+
      });
      //Blog Category All Route end
 

@@ -44,8 +44,10 @@
 										<td>{{ $item->category_name}}</td>
 										<td>{{ $item->category_slug }}</td>
 										<td>
-						<a href="{{ route('edit.team',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
-						<a href="{{ route('delete.team',$item->id)}}" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
+
+				<button type="button" class="btn btn-warning px-3 radius-30" data-bs-toggle="modal" data-bs-target="#category" id="{{ $item->id}}" onclick="categoryEdit(this.id)">Edit</button>
+
+						<a href="{{ route('delete.blog.category',$item->id)}}" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
 										</td>
 									</tr>
 									@endforeach
@@ -57,7 +59,7 @@
 				<hr/>
 			</div>
 
-
+<!-- insert Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 	<div class="modal-content">
@@ -84,4 +86,52 @@
 	</div>
 </div>
 </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Edit Blog Category</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<form action="{{ route('update.blog.category') }}" method="post">
+				@csrf
+				<input type="hidden" name="cat_id" id="cat_id">
+				<div class="form-group mb-3">
+					<label class="form-label">Blog Category Name</label>
+					<input type="text" name="category_name" class="form-control" id="cat">
+					
+				</div>
+				
+		
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary">Save changes</button>
+		</form>
+		</div>
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+	function categoryEdit(id){
+		$.ajax({
+			type: 'GET',
+			url: '/edit/blog/category/'+id,
+			dataType: 'json',
+
+			success:function(data){
+				$('#cat').val(data.category_name);
+				$('#cat_id').val(data.id);
+			}
+		});
+	}	
+
+
+
+</script>
 @endsection
