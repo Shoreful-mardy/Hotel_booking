@@ -123,15 +123,25 @@
 				
 				
 				
-				<li class="menu-label">Others</li>
+				<li class="menu-label">Blog</li>
 				
 				<li>
-					<a href="#" target="_blank">
-						<div class="parent-icon"><i class="bx bx-support"></i>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
 						</div>
-						<div class="menu-title">Support</div>
+						<div class="menu-title">Blog Category</div>
 					</a>
+					<ul>
+						<li> <a href="{{ route('all.blog.category')}}"><i class='bx bx-radio-circle'></i>All Category</a>
+						</li>
+
+						<li> <a href="{{ route('add.testimonial')}}"><i class='bx bx-radio-circle'></i>Add Category</a>
+						</li>
+
+					</ul>
 				</li>
+
+
 			</ul>
 			<!--end navigation-->
 		</div>

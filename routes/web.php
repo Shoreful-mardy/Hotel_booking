@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\RoomController;
 use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
+use App\Http\Controllers\Backend\BlogController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -147,6 +148,15 @@ require __DIR__.'/auth.php';
         Route::get('/delete/testimonial/{id}','DeleteTestimonial')->name('delete.testimonial');
      });
      //Testimonial All Route end
+
+
+     /// Blog Category All Route start
+     Route::controller(BlogController::class)->group(function(){
+
+        Route::get('/all/blog/category','AllBlogCategory')->name('all.blog.category');
+        Route::post('/store/blog/category','StoreBlogCategory')->name('store.blog.category');
+     });
+     //Blog Category All Route end
 
 
 
