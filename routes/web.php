@@ -197,3 +197,11 @@ require __DIR__.'/auth.php';
  });
 ///FRONTENT ROOM  ALL ROUTE END  HERE
 
+///Frontend Blog Post All Route start
+ Route::controller(BlogController::class)->group(function(){
+    Route::get('/blog/details/{id}','BlogDetails')->name('blog.details');
+    Route::get('/all/blog/','AllBlog')->name('all.blog');
+
+ });
+ //Frontend Blog Post All Route end
+

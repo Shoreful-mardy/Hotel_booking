@@ -11,7 +11,7 @@
 @foreach($post as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-item">
-                            <a href="blog-details.html">
+                            <a href="{{ route('blog.details',$item->id)}}">
                                 <img src="{{ asset($item->post_image) }}" alt="Images">
                             </a>
                             <div class="content">
@@ -22,10 +22,10 @@
                                     <li><i class='bx bx-user'></i>{{ $item->user->name}}</li>
                                 </ul>
                                 <h3>
-                                    <a href="blog-details.html">{{ $item->post_title}}</a>
+                                    <a href="{{ route('blog.details',$item->id)}}">{{ $item->post_title}}</a>
                                 </h3>
                                 <p>{{ $item->short_desc}}</p>
-                                <a href="blog-details.html" class="read-btn">
+                                <a href="{{ route('blog.details',$item->id)}}" class="read-btn">
                                     Read More
                                 </a>
                             </div>

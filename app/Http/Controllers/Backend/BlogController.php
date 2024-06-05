@@ -199,6 +199,25 @@ class BlogController extends Controller
 
     }//End Method
 
+    // ======Method For Frontend Start From Here 
+
+
+    public function BlogDetails($id){
+        $r_post = BlogPost::latest()->limit(3)->orderBy('id','DESC')->get();
+        $blog_category = BlogCategory::latest()->get();
+        $post = BlogPost::findOrFail($id);
+        return view('frontend.blog.blog_details',compact('post','blog_category','r_post'));
+
+    }//End Method
+
+    public function AllBlog(){
+        
+        $r_post = BlogPost::latest()->limit(3)->orderBy('id','DESC')->get();
+        $blog_category = BlogCategory::latest()->get();
+        $post = BlogPost::latest()->get();
+        return view('frontend.blog.all_blog',compact('post','blog_category','r_post'));
+    }
+
 
 
 
