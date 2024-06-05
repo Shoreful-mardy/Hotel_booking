@@ -201,6 +201,8 @@ require __DIR__.'/auth.php';
  Route::controller(BlogController::class)->group(function(){
     Route::get('/blog/details/{id}','BlogDetails')->name('blog.details');
     Route::get('/all/blog/','AllBlog')->name('all.blog');
+    Route::get('/Categorywise/post/{id}','CatWisePost')->name('cat_wise.post');
+
 
  });
  //Frontend Blog Post All Route end

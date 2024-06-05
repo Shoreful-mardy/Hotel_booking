@@ -211,12 +211,24 @@ class BlogController extends Controller
     }//End Method
 
     public function AllBlog(){
-        
+
         $r_post = BlogPost::latest()->limit(3)->orderBy('id','DESC')->get();
         $blog_category = BlogCategory::latest()->get();
         $post = BlogPost::latest()->get();
         return view('frontend.blog.all_blog',compact('post','blog_category','r_post'));
-    }
+    }///End Method
+
+
+
+    public function CatWisePost($id){
+
+        $r_post = BlogPost::latest()->limit(3)->orderBy('id','DESC')->get();
+        $blog_category = BlogCategory::latest()->get();
+        $post = BlogPost::where('blogcat_id',$id)->get();
+        $bredcat = BlogCategory::where('id',$id)->first();
+        return view('frontend.blog.catwise_blog',compact('post','blog_category','r_post','bredcat'));
+
+    }//End Method
 
 
 

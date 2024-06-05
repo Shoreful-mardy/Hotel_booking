@@ -1,6 +1,22 @@
 @extends('frontend.main_master')
 @section('main')
 
+ <!-- Inner Banner -->
+        <div class="inner-banner inner-bg3">
+            <div class="container">
+                <div class="inner-title">
+                    <ul>
+                        <li>
+                            <a href="{{ url('/') }}">Home</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>{{ $post->category->category_name}}</li>
+                    </ul>
+                    <h3>{{ $post->post_title}}</h3>
+                </div>
+            </div>
+        </div>
+        <!-- Inner Banner End -->
 
 <!-- Blog Details Area -->
         <div class="blog-details-area pt-100 pb-70">
@@ -122,7 +138,7 @@
                                     	@foreach($blog_category as $category)
 
                                         <li>
-                                            <a href="#">{{ $category->category_name}}</a>
+                                            <a href="{{ route('cat_wise.post',$category->id)}}">{{ $category->category_name}}</a>
                                         </li>
                                         @endforeach
                                     </ul>
