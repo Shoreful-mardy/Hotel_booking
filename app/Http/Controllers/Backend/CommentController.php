@@ -30,6 +30,31 @@ class CommentController extends Controller
     }//End Method
 
 
+    // Admin All Method start From this line
+
+
+    public function AllBlogComment(){
+
+        $comment = Comment::latest()->get();
+        return view('backend.comment.all_comment',compact('comment'));
+
+    }//End Method
+
+    public function UpdateCommentStatus(Request $request){
+
+        $commentId = $request->input('comment_id');
+        $isChecked = $request->input('is_chacked', 0);
+
+        $comment = Comment::find($commentId);
+        if ($comment) {
+            $comment->status = $isChecked;
+            $comment->save();
+        }
+        return response()->json(['message' => 'Comment Status Updated Successfully']);
+
+    }//End Method
+
+
 
 
 

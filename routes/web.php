@@ -182,6 +182,16 @@ require __DIR__.'/auth.php';
      //Blog Post All Route end
 
 
+     /// Blog Post Comment For Admin All Route start 
+     Route::controller(CommentController::class)->group(function(){
+
+        Route::get('/all/blog/comment','AllBlogComment')->name('all.blog.comment');
+        Route::post('/update/comment/status','UpdateCommentStatus')->name('update.comment.status');
+
+     });
+     //Blog Post Comment For Admin All Route end
+
+
 
  });
 

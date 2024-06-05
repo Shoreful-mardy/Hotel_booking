@@ -51,29 +51,24 @@
                             <div class="comments-wrap">
 								<h3 class="title">Comments</h3>
 								<ul>
-									<li>
-										<img src="assets/img/blog/blog-profile1.jpg" alt="Image">
-										<h3>Megan Fox</h3>
-										<span>October 14, 2020, 12:10 PM</span>
-										<p>
-                                            Engineering requires many building blocks and tools. To produce real world 
-                                            results & one must  mathematics and sciences to tangible problems and we 
-                                            are one of the  best company in the world. 
-                                        </p>
-										 
-                                    </li>
-                                    
-                                    <li>
-										<img src="assets/img/blog/blog-profile2.jpg" alt="Image">
-										<h3>Mike Thomas</h3>
-										<span>October 14, 2020, 11:30 AM</span>
-										<p>
-                                            Engineering requires many building blocks and tools. To produce real world 
-                                            results & one must  mathematics and sciences to tangible problems and we 
-                                            are one of the  best company in the world. 
-                                        </p>
-										 
-                                    </li>
+
+
+
+            @php
+                $comment = App\Models\Comment::where('post_id',$post->id)->where('status',1)->get();
+            @endphp
+            @foreach($comment as $com)
+					<li>
+						<img src="{{ asset('/upload/user_images/'.$com->user->photo) }}" alt="Image" style="width:50px; height: 50px;">
+						<h3>{{ $com->user->name }}</h3>
+						<span>{{ $com->created_at->format('M d,Y, g:i A') }}</span>
+						<p>
+                            {!! $com->message !!} 
+                        </p>
+						 
+                    </li>
+
+            @endforeach 
 								</ul>
                             </div>
 
