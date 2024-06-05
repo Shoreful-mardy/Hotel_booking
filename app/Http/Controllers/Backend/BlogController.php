@@ -214,7 +214,7 @@ class BlogController extends Controller
 
         $r_post = BlogPost::latest()->limit(3)->orderBy('id','DESC')->get();
         $blog_category = BlogCategory::latest()->get();
-        $post = BlogPost::latest()->get();
+        $post = BlogPost::latest()->paginate(3);
         return view('frontend.blog.all_blog',compact('post','blog_category','r_post'));
     }///End Method
 

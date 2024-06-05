@@ -61,6 +61,7 @@
 
                 <div class="col-lg-12 col-md-12">
                     <div class="pagination-area">
+
                         <a href="#" class="prev page-numbers">
                             <i class='bx bx-chevrons-left'></i>
                         </a>
@@ -72,6 +73,7 @@
                         <a href="#" class="next page-numbers">
                             <i class='bx bx-chevrons-right'></i>
                         </a>
+
                     </div>
                 </div>
             </div>
