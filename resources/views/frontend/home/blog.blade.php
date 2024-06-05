@@ -5,74 +5,35 @@
                     <h2>Our Latest Blogs to the Intranational Journal at a Glance</h2>
                 </div>
                 <div class="row pt-45">
+@php
+    $post = App\Models\BlogPost::latest()->limit(3)->get();
+@endphp
+@foreach($post as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-item">
                             <a href="blog-details.html">
-                                <img src="{{ asset('frontend/assets/img/blog/blog-item-img1.jpg') }}
-" alt="Images">
+                                <img src="{{ asset($item->post_image) }}" alt="Images">
                             </a>
                             <div class="content">
                                 <ul>
-                                    <li>October 01, 2020</li>
-                                    <li><i class='bx bx-user'></i>29K</li>
-                                    <li><i class='bx bx-message-alt-dots'></i>15K</li>
+                                    <li>{{ $item->created_at->format('M d ,Y') }}</li>
+                                    <!-- <li><i class='bx bx-user'></i>29K</li>
+                                    <li><i class='bx bx-message-alt-dots'></i>15K</li> -->
+                                    <li><i class='bx bx-user'></i>{{ $item->user->name}}</li>
                                 </ul>
                                 <h3>
-                                    <a href="blog-details.html">Hotel Management is the Best Policy</a>
+                                    <a href="blog-details.html">{{ $item->post_title}}</a>
                                 </h3>
-                                <p>This is one of the best & quality full hotels in the world that will help you to make an excellent study market.</p>
+                                <p>{{ $item->short_desc}}</p>
                                 <a href="blog-details.html" class="read-btn">
                                     Read More
                                 </a>
                             </div>
                         </div>
                     </div>
+@endforeach
+                   
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <a href="blog-details.html">
-                                <img src="{{ asset('frontend/assets/img/blog/blog-item-img2.jpg') }}
-" alt="Images">
-                            </a>
-                            <div class="content">
-                                <ul>
-                                    <li>October 07, 2020</li>
-                                    <li><i class='bx bx-user'></i>22K</li>
-                                    <li><i class='bx bx-message-alt-dots'></i>24K</li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">3d Hotel Models Have an Important Model</a>
-                                </h3>
-                                <p>This is one of the best & quality full hotels in the world that will help you to make an excellent study market.</p>
-                                <a href="blog-details.html" class="read-btn">
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
-                        <div class="blog-item">
-                            <a href="blog-details.html">
-                                <img src="{{ asset('frontend/assets/img/blog/blog-item-img3.jpg') }}
-" alt="Images">
-                            </a>
-                            <div class="content">
-                                <ul>
-                                    <li>October 17, 2020</li>
-                                    <li><i class='bx bx-user'></i>27K</li>
-                                    <li><i class='bx bx-message-alt-dots'></i>39K</li>
-                                </ul>
-                                <h3>
-                                    <a href="blog-details.html">Hotel Management Has a Good Future Era</a>
-                                </h3>
-                                <p>This is one of the best & quality full hotels in the world that will help you to make an excellent study market.</p>
-                                <a href="blog-details.html" class="read-btn">
-                                    Read More
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

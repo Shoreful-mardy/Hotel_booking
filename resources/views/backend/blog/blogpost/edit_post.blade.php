@@ -122,9 +122,6 @@
                 long_desc: {
                     required : true,
                 },
-                post_image: {
-                    required : true,
-                },
                 
             },
             messages :{
@@ -140,9 +137,6 @@
                 long_desc: {
                     required : 'Please Enter Post Description',
                 }, 
-                post_image: {
-                    required : 'Please Select Image',
-                },  
                  
 
             },
