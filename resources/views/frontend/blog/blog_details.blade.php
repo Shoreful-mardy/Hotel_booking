@@ -80,44 +80,38 @@
                             <div class="comments-form">
                                 <div class="contact-form">
                                     <h2>Leave A Comment</h2>
-                                    <form id="contactForm">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Your Name">
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-lg-6 col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="email" name="email" id="email" class="form-control" required data-error="Please enter your email" placeholder="Your Email">
-                                                </div>
-                                            </div>
 
-                                            <div class="col-lg-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <input type="text" name="websit" class="form-control" required data-error="Your website" placeholder="Your website">
-                                                </div>
-                                            </div>
-            
-                                            <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Your Message"></textarea>
-                                                </div>
-                                            </div>
+  @auth
+      <form  action="{{ route('add.comment') }}" method="post">
+        @csrf
+        <div class="row">
+            <input type="hidden" name="post_id" value="{{ $post->id }}">
 
-                                           
-                                            <div class="col-lg-12 col-md-12">
-                                                <button type="submit" class="default-btn btn-bg-three">
-                                                    Post A Comment
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+            <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Your Message"></textarea>
+                </div>
+            </div>
+
+           
+            <div class="col-lg-12 col-md-12">
+                <button type="submit" class="default-btn btn-bg-three">
+                    Post A Comment
+                </button>
+            </div>
+        </div>
+    </form>
+
+  @else
+<p>Please <a href="{{ route('login')}}">Login</a> First For Add Comment</p>
+
+  @endauth                                  
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
 
                     <div class="col-lg-4">
                         <div class="side-bar-wrap">

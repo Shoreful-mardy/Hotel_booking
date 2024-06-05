@@ -107,12 +107,12 @@
                         <div class="widget-popular-post">
                           @foreach($r_post as $post)
                             <article class="item">
-                                <a href="{{ route('blog.details',$post->id)}}" class="thumb">
+                                <a href="{{ route('blog.details',$item->id)}}" class="thumb">
                                     <img src="{{ asset($post->post_image) }}" style="height: 80px; width: 80px;" >
                                 </a>
                                 <div class="info">
                                     <h4 class="title-text">
-                                        <a href="{{ route('blog.details',$post->id)}}">
+                                        <a href="{{ route('blog.details',$item->id)}}">
                                             {{ $post->post_title}}
                                         </a>
                                     </h4>

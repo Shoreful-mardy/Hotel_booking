@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\RoomListController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\CommentController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -46,6 +47,11 @@ Route::middleware('auth')->group(function () {
      Route::controller(BookingController::class)->group(function(){
         Route::get('/user/booking/','UserBooking')->name('user.booking');
         Route::get('/user/invoice/{id}','UserDownloadInvoice')->name('user.invoice');
+     });
+
+     //User Comment 
+     Route::controller(CommentController::class)->group(function(){
+        Route::post('/add/comment/','AddComment')->name('add.comment');
      });
 
 
