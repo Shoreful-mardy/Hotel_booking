@@ -78,7 +78,15 @@ class GalleryController extends Controller
         );
         return redirect()->back()->with($notificaton);
 
-    }
+    }// End Method 
+
+    // Frontend Method Start From Here 
+
+
+    public function ShowGallery(){
+        $gallery = Gallery::latest()->get();
+        return view('frontend.gallery.show_gallery',compact('gallery'));
+    }//End Method
 
 
 

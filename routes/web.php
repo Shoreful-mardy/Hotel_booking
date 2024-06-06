@@ -242,8 +242,12 @@ require __DIR__.'/auth.php';
     Route::get('/blog/details/{id}','BlogDetails')->name('blog.details');
     Route::get('/all/blog/','AllBlog')->name('all.blog');
     Route::get('/Categorywise/post/{id}','CatWisePost')->name('cat_wise.post');
-
-
  });
  //Frontend Blog Post All Route end
+
+ ///Frontend Gallery All Route start
+ Route::controller(GalleryController::class)->group(function(){
+    Route::get('/show/gallery/','ShowGallery')->name('show.gallery');
+ });
+ //Frontend Gallery All Route end
 
