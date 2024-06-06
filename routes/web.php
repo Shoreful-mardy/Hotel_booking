@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\GalleryController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -203,6 +204,16 @@ require __DIR__.'/auth.php';
         Route::post('update/site/setting/','UpdateSiteSetting')->name('update.site.setting');
      });
      //Site Setting All Route end
+
+      /// Gallery All Route start
+     Route::controller(GalleryController::class)->group(function(){
+        Route::get('all/gallery/','AllGallery')->name('all.gallery');
+        Route::get('add/gallery/','AddGallery')->name('add.gallery');
+        Route::post('store/gallery/','StoreGallery')->name('store.gallery');
+        Route::post('delete/gallery/multiple','DeleteGalleryMultiple')->name('delete.gallery.multiple');
+        Route::get('delete/gallery/image/{id}','DeleteGalleryImage')->name('delete.gallery.image');
+     });
+     //Gallery All Route end
 
 
 
