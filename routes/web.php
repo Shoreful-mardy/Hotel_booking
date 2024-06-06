@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CommentController;
+use App\Http\Controllers\Backend\ReportController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -184,12 +185,17 @@ require __DIR__.'/auth.php';
 
      /// Blog Post Comment For Admin All Route start 
      Route::controller(CommentController::class)->group(function(){
-
         Route::get('/all/blog/comment','AllBlogComment')->name('all.blog.comment');
         Route::post('/update/comment/status','UpdateCommentStatus')->name('update.comment.status');
-
      });
      //Blog Post Comment For Admin All Route end
+
+     /// Booking Report All Route start 
+     Route::controller(ReportController::class)->group(function(){
+        Route::get('/booking/report','BookingReport')->name('booking.report');
+        Route::post('/search/by/date','SearchByDate')->name('search-by-date');
+     });
+     //Booking Report All Route end
 
 
 
