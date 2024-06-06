@@ -197,6 +197,13 @@ require __DIR__.'/auth.php';
      });
      //Booking Report All Route end
 
+     /// Site Setting All Route start
+     Route::controller(SettingController::class)->group(function(){
+        Route::get('site/setting/','SiteSetting')->name('site.setting');
+        Route::post('update/site/setting/','UpdateSiteSetting')->name('update.site.setting');
+     });
+     //Site Setting All Route end
+
 
 
  });

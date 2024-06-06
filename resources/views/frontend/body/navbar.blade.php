@@ -1,10 +1,14 @@
+@php
+    $site = App\Models\SiteSetting::find(1);
+@endphp
+
 <div class="navbar-area">
             <!-- Menu For Mobile Device -->
             <div class="mobile-nav">
                 <a href="{{ url('/')}}" class="logo">
-                    <img src="{{ asset('frontend/assets/img/logos/logo-1.png') }}
+                    <img src="{{ asset($site->logo) }}
                     " class="logo-one" alt="Logo">
-                                        <img src="{{ asset('frontend/assets/img/logos/footer-logo1.png') }}
+                                        <img src="{{ asset($site->logo) }}
                     " class="logo-two" alt="Logo">
                                     </a>
                                 </div>
@@ -14,9 +18,9 @@
                                     <div class="container">
                                         <nav class="navbar navbar-expand-md navbar-light ">
                                             <a class="navbar-brand" href="{{ url('/')}}">
-                                                <img src="{{ asset('frontend/assets/img/logos/logo-1.png') }}
+                                                <img src="{{ asset($site->logo) }}
                     " class="logo-one" alt="Logo">
-                                                <img src="{{ asset('frontend/assets/img/logos/footer-logo1.png') }}
+                                                <img src="{{ asset($site->logo) }}
                     " class="logo-two" alt="Logo">
                                             </a>
 
