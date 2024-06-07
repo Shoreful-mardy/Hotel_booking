@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\GalleryController;
+use App\Http\Controllers\Backend\ContactController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -212,8 +213,15 @@ require __DIR__.'/auth.php';
         Route::post('store/gallery/','StoreGallery')->name('store.gallery');
         Route::post('delete/gallery/multiple','DeleteGalleryMultiple')->name('delete.gallery.multiple');
         Route::get('delete/gallery/image/{id}','DeleteGalleryImage')->name('delete.gallery.image');
-     });
+    });
      //Gallery All Route end
+
+    ///Contact All Route start for admin
+    Route::controller(ContactController::class)->group(function(){
+        Route::get('/contact/message','ContactMessage')->name('contact.message');
+        Route::get('/view/message/{id}','ViewMessage');
+     });
+     //Contact All Route end for admin
 
 
 
@@ -245,9 +253,16 @@ require __DIR__.'/auth.php';
  });
  //Frontend Blog Post All Route end
 
- ///Frontend Gallery All Route start
- Route::controller(GalleryController::class)->group(function(){
+ ///Frontend Gallery All Route start 
+  Route::controller(GalleryController::class)->group(function(){
     Route::get('/show/gallery/','ShowGallery')->name('show.gallery');
  });
  //Frontend Gallery All Route end
+
+ ///Contact All Route start
+  Route::controller(ContactController::class)->group(function(){
+    Route::get('/contact/','ContactUs')->name('contact.us');
+    Route::post('/contact/store','ContactStore')->name('contact.store');
+ });
+ //Contact All Route end
 

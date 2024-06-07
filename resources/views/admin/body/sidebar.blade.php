@@ -149,6 +149,19 @@
 						</li>
 					</ul>
 				</li>
+
+				<li class="menu-label">Contact Message</li>
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						</div>
+						<div class="menu-title">Contact Message</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('contact.message')}}"><i class='bx bx-radio-circle'></i>Message</a>
+						</li>
+					</ul>
+				</li>
 				
 				
 				
