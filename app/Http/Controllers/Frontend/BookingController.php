@@ -24,6 +24,8 @@ use Stripe;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookConfirm;
+use App\Notifications\BookingComplete;
+use Illuminate\Support\Facades\Notification;
 
 class BookingController extends Controller
 {
@@ -79,6 +81,9 @@ class BookingController extends Controller
 
     public function CheckOutStore(Request $request){
         
+
+        $user = User::where('role','admin')->get();
+
         $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -178,6 +183,11 @@ class BookingController extends Controller
                 'message' => 'Booking Successfully Done',
                 'alert-type' => 'success'
             );
+
+
+            Notification::send($user, new BookingComplete($request->name));
+
+
             return redirect('/')->with($notificaton);
 
     }//End Method
@@ -358,6 +368,27 @@ class BookingController extends Controller
         return $pdf->download('invoice.pdf');
 
     }//End Method
+
+
+
+
+
+
+
+
+
+
+
+    public function MarkAsRead(Request $request,$notificatonId){
+
+        $user = Auth::user();
+        $notificaton = $user->notifications()->where('id',$notificatonId)->first();
+
+        if ($notificaton) {
+            $notificaton->markAsRead();
+        }
+        return response()->json(['count' => $user->unreadNotifications()->count()]);
+    }// End Method
 
 
 

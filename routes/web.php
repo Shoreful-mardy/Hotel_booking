@@ -266,3 +266,9 @@ require __DIR__.'/auth.php';
  });
  //Contact All Route end
 
+///Notification All Route start 
+  Route::controller(BookingController::class)->group(function(){
+    Route::post('/mark-notification-as-read/{notification}','MarkAsRead');
+ });
+ //Notification All Route end
+
