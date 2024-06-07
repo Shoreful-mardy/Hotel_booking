@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\ContactController;
+use App\Http\Controllers\Backend\RoleController;
 
 // Route::get('/', function () {
 //     return view('frontend.main_master');
@@ -65,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 //===========Start Admin Group Middleware=======
- Route::middleware(['auth','roles'])->group(function(){
+Route::middleware(['auth','roles'])->group(function(){
      Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
      Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
      Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
@@ -222,6 +223,17 @@ require __DIR__.'/auth.php';
         Route::get('/view/message/{id}','ViewMessage');
      });
      //Contact All Route end for admin
+
+    /// Role & Permission All Route start
+     Route::controller(RoleController::class)->group(function(){
+        Route::get('all/permisson/','AllPermission')->name('all.permission');
+        Route::get('add/permisson/','AddPermission')->name('add.permission');
+        Route::post('store/permisson/','StorePermission')->name('store.permission');
+        Route::get('edit/permisson/{id}','EditPermission')->name('edit.permission');
+        Route::post('update/permisson/','UpdatePermission')->name('update.permission');
+        Route::get('delete/permisson/{id}','DeletePermission')->name('delete.permission');
+    });
+    //Role & Permission All Route end
 
 
 
