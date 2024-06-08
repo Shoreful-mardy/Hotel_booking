@@ -232,6 +232,10 @@ Route::middleware(['auth','roles'])->group(function(){
         Route::get('edit/permisson/{id}','EditPermission')->name('edit.permission');
         Route::post('update/permisson/','UpdatePermission')->name('update.permission');
         Route::get('delete/permisson/{id}','DeletePermission')->name('delete.permission');
+
+        //Excel Permission import and export 
+        Route::get('import/permisson/','ImportPermission')->name('import.permission');
+        Route::get('export/permisson/','ExportPermission')->name('export');
     });
     //Role & Permission All Route end
 

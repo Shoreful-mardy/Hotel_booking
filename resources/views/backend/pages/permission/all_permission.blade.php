@@ -16,6 +16,14 @@
 					</div>
 					<div class="ms-auto">
 						<div class="btn-group">
+							<a href="{{ route('import.permission')}}"><button type="button" class="btn btn-outline-warning px-5 radius-30">Import</button>
+							</a>
+						</div>
+												<div class="btn-group">
+							<a href="{{ route('add.permission')}}"><button type="button" class="btn btn-outline-success px-5 radius-30">Export</button>
+							</a>
+						</div>
+						<div class="btn-group">
 							<a href="{{ route('add.permission')}}"><button type="button" class="btn btn-outline-primary px-5 radius-30">Add Permission</button>
 							</a>
 						</div>
