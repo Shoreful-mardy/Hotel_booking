@@ -40,7 +40,7 @@
                 <option value="Team" {{ $permission->group_name == 'Team' ? 'selected' : '' }}>Team</option>
                 <option value="Book Area" {{ $permission->group_name == 'Book Area' ? 'selected' : '' }}>Book Area</option>
                 <option value="Manage Room" {{ $permission->group_name == 'Manage Room' ? 'selected' : '' }}>Manage Room</option>
-                <option value="Manage Room" {{ $permission->group_name == 'Booking' ? 'selected' : '' }}>Booking</option>
+                <option value="Booking" {{ $permission->group_name == 'Booking' ? 'selected' : '' }}>Booking</option>
                 <option value="Manage Report" {{ $permission->group_name == 'Booking Report' ? 'selected' : '' }}>Booking Report</option>
                 <option value="Roomlist" {{ $permission->group_name == 'Roomlist' ? 'selected' : '' }}>Roomlist</option>
                 <option value="Setting" {{ $permission->group_name == 'Setting' ? 'selected' : '' }}>Setting</option>

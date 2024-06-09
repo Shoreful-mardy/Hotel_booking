@@ -39,7 +39,7 @@
                 <option value="Team">Team</option>
                 <option value="Book Area">Book Area</option>
                 <option value="Manage Room">Manage Room</option>
-                <option value="Manage Room">Booking</option>
+                <option value="Booking">Booking</option>
                 <option value="Manage Report">Booking Report</option>
                 <option value="Roomlist">Roomlist</option>
                 <option value="Setting">Setting</option>

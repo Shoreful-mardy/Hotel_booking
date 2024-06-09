@@ -232,13 +232,10 @@ Route::middleware(['auth','roles'])->group(function(){
         Route::get('edit/permisson/{id}','EditPermission')->name('edit.permission');
         Route::post('update/permisson/','UpdatePermission')->name('update.permission');
         Route::get('delete/permisson/{id}','DeletePermission')->name('delete.permission');
-
         //Excel Permission import and export 
         Route::get('import/permisson/','ImportPermission')->name('import.permission');
         Route::get('export/permisson/','ExportPermission')->name('export');
         Route::post('import/permisson/','Import')->name('import');
-
-
         // Role Simple Crud
         Route::get('all/roles/','AllRoles')->name('all.role');
         Route::get('add/roles/','AddRoles')->name('add.role');
@@ -246,6 +243,10 @@ Route::middleware(['auth','roles'])->group(function(){
         Route::get('edit/role/{id}','EditRole')->name('edit.role');
         Route::post('update/role/','UpdateRole')->name('update.role');
         Route::get('delete/role/{id}','DeleteRole')->name('delete.role');
+        //Role Has Permission Route Start 
+        Route::get('add/roles/permisson/','AddRolesPermission')->name('add.role.permission');
+        Route::post('store/roles/permisson/','StoreRolesPermission')->name('role.permission.store');
+
 
     });
     //Role & Permission All Route end
