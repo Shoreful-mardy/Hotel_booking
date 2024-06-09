@@ -246,6 +246,11 @@ Route::middleware(['auth','roles'])->group(function(){
         //Role Has Permission Route Start 
         Route::get('add/roles/permisson/','AddRolesPermission')->name('add.role.permission');
         Route::post('store/roles/permisson/','StoreRolesPermission')->name('role.permission.store');
+        Route::get('all/roles/permisson/','AllRolesPermission')->name('all.roles.permission');
+        Route::get('edit/roles/permisson/{id}','EditRolesPermission')->name('edit.role.permission');
+        Route::post('update/roles/permisson/{id}','UpdateRolesPermission')->name('admin.role.update');
+        Route::get('delete/roles/permisson/{id}','DeleteRolesPermission')->name('delete.role.permission');
+
 
 
     });
