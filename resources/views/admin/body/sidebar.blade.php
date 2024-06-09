@@ -214,6 +214,23 @@
 					<ul>
 						<li> <a href="{{ route('all.permission')}}"><i class='bx bx-radio-circle'></i>All Permission</a>
 						</li>
+						<li> <a href="{{ route('all.role')}}"><i class='bx bx-radio-circle'></i>All Role</a>
+						</li>
+					</ul>
+				</li>
+
+
+				<li class="menu-label">Other</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class='bx bx-support'></i>
+						</div>
+						<div class="menu-title">Support</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('all.permission')}}"><i class='bx bx-radio-circle'></i>Customer</a>
+						</li>
 					</ul>
 				</li>
 

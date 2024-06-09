@@ -237,6 +237,16 @@ Route::middleware(['auth','roles'])->group(function(){
         Route::get('import/permisson/','ImportPermission')->name('import.permission');
         Route::get('export/permisson/','ExportPermission')->name('export');
         Route::post('import/permisson/','Import')->name('import');
+
+
+        // Role Simple Crud
+        Route::get('all/roles/','AllRoles')->name('all.role');
+        Route::get('add/roles/','AddRoles')->name('add.role');
+        Route::post('store/roles/','StoreRoles')->name('store.roles');
+        Route::get('edit/role/{id}','EditRole')->name('edit.role');
+        Route::post('update/role/','UpdateRole')->name('update.role');
+        Route::get('delete/role/{id}','DeleteRole')->name('delete.role');
+
     });
     //Role & Permission All Route end
 

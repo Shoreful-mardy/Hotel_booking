@@ -93,6 +93,59 @@ class RoleController extends Controller
             return redirect()->route('all.permission')->with($notificaton);
     }//End Method
 
+    ////=========Role All method Start From Here
+
+    public function AllRoles(){
+        $role = Role::latest()->get();
+        return view('backend.pages.roles.all_role',compact('role'));
+    }//End Method
+
+    public function AddRoles(){
+        return view('backend.pages.roles.add_role');
+    }//End Method
+
+
+    public function StoreRoles(Request $request){
+        Role::create([
+            'name' => $request->name,
+        ]);
+        $notificaton = array(
+                'message' => 'Role Created Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.role')->with($notificaton);
+    }//End Method
+
+
+    public function EditRole($id){
+        $roles = Role::find($id);
+        return view('backend.pages.roles.edit_roles',compact('roles'));
+    }//End Method 
+
+    public function UpdateRole(Request $request){
+
+        $role_id = $request->id;
+
+        Role::find($role_id)->update([
+            'name' => $request->name,
+        ]);
+        $notificaton = array(
+                'message' => 'Role Updated Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.role')->with($notificaton);
+    }//End Method 
+
+    public function DeleteRole($id){
+        Role::find($id)->delete();
+
+        $notificaton = array(
+                'message' => 'Role Deleted Successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.role')->with($notificaton);
+    }//End Method
+
 
 
 
