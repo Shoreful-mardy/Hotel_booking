@@ -20,7 +20,7 @@
 							</a>
 						</div>
 												<div class="btn-group">
-							<a href="{{ route('add.permission')}}"><button type="button" class="btn btn-outline-success px-5 radius-30">Export</button>
+							<a href="{{ route('export')}}"><button type="button" class="btn btn-outline-success px-5 radius-30">Export</button>
 							</a>
 						</div>
 						<div class="btn-group">

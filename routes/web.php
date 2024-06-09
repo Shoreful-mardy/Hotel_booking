@@ -236,6 +236,7 @@ Route::middleware(['auth','roles'])->group(function(){
         //Excel Permission import and export 
         Route::get('import/permisson/','ImportPermission')->name('import.permission');
         Route::get('export/permisson/','ExportPermission')->name('export');
+        Route::post('import/permisson/','Import')->name('import');
     });
     //Role & Permission All Route end
 

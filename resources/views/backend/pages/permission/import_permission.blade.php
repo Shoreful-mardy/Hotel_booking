@@ -23,7 +23,7 @@
             <div class="col-lg-12">
 <div class="card">
 <div class="card-body p-4">
-    <form id="myForm" class="row g-3" method="post" action="{{ route('store.permission') }}" >
+    <form id="myForm" class="row g-3" method="post" action="{{ route('import') }}" enctype="multipart/form-data">
 
         @csrf
 
