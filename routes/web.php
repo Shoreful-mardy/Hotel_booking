@@ -77,8 +77,8 @@ Route::middleware(['auth','roles'])->group(function(){
 
      /// TEAM ALL ROUTE START FROM HERE
      Route::controller(TeamController::class)->group(function(){
-        Route::get('/all/team','AllTeam')->name('all.team');
-        Route::get('/add/team','AddTeam')->name('add.team');
+        Route::get('/all/team','AllTeam')->name('all.team')->middleware('permission:team.all');
+        Route::get('/add/team','AddTeam')->name('add.team')->middleware('permission:team.add');
         Route::post('/store/team','TeamStore')->name('team.store');
         Route::get('/edit/team/{id}','EditTeam')->name('edit.team');
         Route::post('/update/team','TeamUpdate')->name('team.update');
@@ -89,7 +89,7 @@ Route::middleware(['auth','roles'])->group(function(){
 
      /// BOOK AREA ALL ROUTE START FROM HERE
      Route::controller(BookAreaController::class)->group(function(){
-        Route::get('/book/area/','BookArea')->name('book.area');
+        Route::get('/book/area/','BookArea')->name('book.area')->middleware('permission:team.all');
         Route::post('/update/book/area','UpdateBookArea')->name('update.book.area');
      });
      ///BOOK AREA ALL ROUTE END  HERE
@@ -135,7 +135,7 @@ Route::middleware(['auth','roles'])->group(function(){
 
      /// Room List All Route start
      Route::controller(RoomListController::class)->group(function(){
-        Route::get('view/room/list/','ViewRoomList')->name('view.room.list');
+        Route::get('view/room/list/','ViewRoomList')->name('view.room.list')->middleware('room.list');
         Route::get('add/room/list/','AddRoomList')->name('add.room.list');
         Route::post('/store/roomlist', 'StoreRoomList')->name('store.roomlist');
      });
@@ -143,15 +143,15 @@ Route::middleware(['auth','roles'])->group(function(){
 
      /// SMTP Setting All Route start
      Route::controller(SettingController::class)->group(function(){
-        Route::get('smtp/setting/','SmtpSetting')->name('smtp.setting');
+        Route::get('smtp/setting/','SmtpSetting')->name('smtp.setting')->middleware('smtp.menu');
         Route::post('smtp/update/','SmtpUpdate')->name('smtp.update');
      });
      //SMTP Setting All Route end
 
      /// Testimonial All Route start
      Route::controller(TestimonialController::class)->group(function(){
-        Route::get('/all/testimonial','AllTestimonial')->name('all.testimonial');
-        Route::get('/add/testimonial','AddTestimonial')->name('add.testimonial');
+        Route::get('/all/testimonial','AllTestimonial')->name('all.testimonial')->middleware('testimonial.all');
+        Route::get('/add/testimonial','AddTestimonial')->name('add.testimonial')->middleware('testimonial.add');
         Route::post('/store/testimonial','StoreTestimonial')->name('testimonial.store');
         Route::get('/edit/testimonial/{id}','EditTestimonial')->name('edit.testimonial');
         Route::post('/update/testimonial/','UpdateTestimonial')->name('testimonial.update');
@@ -163,7 +163,7 @@ Route::middleware(['auth','roles'])->group(function(){
      /// Blog Category All Route start
      Route::controller(BlogController::class)->group(function(){
 
-        Route::get('/all/blog/category','AllBlogCategory')->name('all.blog.category');
+        Route::get('/all/blog/category','AllBlogCategory')->name('all.blog.category')->middleware('blog.category');
         Route::post('/store/blog/category','StoreBlogCategory')->name('store.blog.category');
         Route::get('/edit/blog/category/{id}','EditBlogCategory');
         Route::post('/update/blog/category','UpdateBlogCategory')->name('update.blog.category');
@@ -175,8 +175,8 @@ Route::middleware(['auth','roles'])->group(function(){
      /// Blog Post All Route start
      Route::controller(BlogController::class)->group(function(){
 
-        Route::get('/all/blog/post','AllBlogPost')->name('all.blog.post');
-        Route::get('/add/blog/post','AddBlogPost')->name('add.blog.post');
+        Route::get('/all/blog/post','AllBlogPost')->name('all.blog.post')->middleware('all.blog');
+        Route::get('/add/blog/post','AddBlogPost')->name('add.blog.post')->middleware('add.blog');
         Route::post('/store/blog/post','StoreBlogPost')->name('store.blog.post');
         Route::get('/edit/blog/post/{id}','EditBlogPost')->name('edit.blog.post');
         Route::post('/update/blog/post/','UpdateBlogPost')->name('update.blog.post');
@@ -188,14 +188,14 @@ Route::middleware(['auth','roles'])->group(function(){
 
      /// Blog Post Comment For Admin All Route start 
      Route::controller(CommentController::class)->group(function(){
-        Route::get('/all/blog/comment','AllBlogComment')->name('all.blog.comment');
+        Route::get('/all/blog/comment','AllBlogComment')->name('all.blog.comment')->middleware('all.comments');
         Route::post('/update/comment/status','UpdateCommentStatus')->name('update.comment.status');
      });
      //Blog Post Comment For Admin All Route end
 
      /// Booking Report All Route start 
      Route::controller(ReportController::class)->group(function(){
-        Route::get('/booking/report','BookingReport')->name('booking.report');
+        Route::get('/booking/report','BookingReport')->name('booking.report')->middleware('booking.report');
         Route::post('/search/by/date','SearchByDate')->name('search-by-date');
      });
      //Booking Report All Route end
@@ -255,8 +255,8 @@ Route::middleware(['auth','roles'])->group(function(){
 
     /// Admin User All Route start
      Route::controller(AdminController::class)->group(function(){
-        Route::get('all/admin/','AllAdmin')->name('all.admin');
-        Route::get('add/admin/','AddAdmin')->name('add.admin');
+        Route::get('all/admin/','AllAdmin')->name('all.admin')->middleware('permission:all.admin');
+        Route::get('add/admin/','AddAdmin')->name('add.admin')->middleware('permission:add.admin');
         Route::post('store/admin/','StoreAdmin')->name('store.admin');
         Route::get('edit/admin/{id}','EditAdmin')->name('edit.admin');
         Route::post('update/admin/{id}','UpdateAdmin')->name('update.admin');
