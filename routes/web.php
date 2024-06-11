@@ -250,11 +250,22 @@ Route::middleware(['auth','roles'])->group(function(){
         Route::get('edit/roles/permisson/{id}','EditRolesPermission')->name('edit.role.permission');
         Route::post('update/roles/permisson/{id}','UpdateRolesPermission')->name('admin.role.update');
         Route::get('delete/roles/permisson/{id}','DeleteRolesPermission')->name('delete.role.permission');
-
-
-
     });
     //Role & Permission All Route end
+
+    /// Admin User All Route start
+     Route::controller(AdminController::class)->group(function(){
+        Route::get('all/admin/','AllAdmin')->name('all.admin');
+        Route::get('add/admin/','AddAdmin')->name('add.admin');
+        Route::post('store/admin/','StoreAdmin')->name('store.admin');
+        Route::get('edit/admin/{id}','EditAdmin')->name('edit.admin');
+        Route::post('update/admin/{id}','UpdateAdmin')->name('update.admin');
+        Route::get('delete/admin/{id}','DeleteAdmin')->name('delete.admin');
+    });
+     //Admin User All Route end
+
+
+
 
 
 

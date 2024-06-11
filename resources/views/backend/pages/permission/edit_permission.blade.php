@@ -50,7 +50,8 @@
                 <option value="Blog Category" {{ $permission->group_name == 'Blog Category' ? 'selected' : '' }}>Blog Category</option>
                 <option value="Blog Post" {{ $permission->group_name == 'Blog Post' ? 'selected' : '' }}>Blog Post</option>
                 <option value="Manage Comment" {{ $permission->group_name == 'Manage Comment' ? 'selected' : '' }}>Manage Comment</option>
-                <option value="Role and Permission" {{ $permission->group_name == '>Role and Permission' ? 'selected' : '' }}>Role and Permission</option>
+                <option value="Role and Permission" {{ $permission->group_name == 'Role and Permission' ? 'selected' : '' }}>Role and Permission</option>
+                <option value="Admin" {{ $permission->group_name == 'Admin' ? 'selected' : '' }}>Admin</option>
                 
             </select>
         </div>

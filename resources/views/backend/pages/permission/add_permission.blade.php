@@ -50,6 +50,7 @@
                 <option value="Blog Post">Blog Post</option>
                 <option value="Manage Comment">Manage Comment</option>
                 <option value="Role and Permission">Role and Permission</option>
+                <option value="Admin">Admin</option>
                 
             </select>
         </div>

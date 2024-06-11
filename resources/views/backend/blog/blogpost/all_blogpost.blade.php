@@ -46,8 +46,14 @@
 										<td><img src="{{ asset($item->post_image) }}" alt="team" style="width:100px; height: 50px;"></td>
 										<td>{{ $item->post_title}}</td>
 										<td>
-						<a href="{{ route('edit.blog.post',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
-						<a href="{{ route('delete.blog.post',$item->id)}}" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
+
+
+@if(Auth::user()->can('edit.blog'))
+<a href="{{ route('edit.blog.post',$item->id)}}" class="btn btn-warning px-3 radius-30">Edit</a>
+@endif
+@if(Auth::user()->can('delete.blog'))
+<a href="{{ route('delete.blog.post',$item->id)}}" id="delete" class="btn btn-danger px-3 radius-30">Delete</a>
+@endif
 										</td>
 									</tr>
 									@endforeach

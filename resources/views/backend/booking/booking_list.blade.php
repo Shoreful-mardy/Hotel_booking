@@ -68,8 +68,12 @@
 											@endif
 										</td>
 										<td>
+						@if(Auth::user()->can('booking.edit'))
 						<a href="{{ route('edit_booking',$item->id)}}" class="badge rounded-pill bg-warning text-dark p-2">Edit</a>
+						@endif
+						@if(Auth::user()->can('booking.delete'))
 						<a href="{{ route('delete.team',$item->id)}}" id="delete" class="badge rounded-pill bg-danger">Delete</a>
+						@endif
 										</td>
 									</tr>
 									@endforeach
